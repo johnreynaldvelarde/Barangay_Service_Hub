@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Barangay Service Hub</string>
+    <string name="get_started">Get Started</string>
+    <string name="barangay_connect">Barangay Connect</string>
+    <string name="one_step_at_a_time">\'One Step at a Time\'</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="forget_password">Forget Password?</string>
+    <string name="login">Login</string>
+    <string name="new_user_register_now">New User? Register Now</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="enter_your_password">Enter your password</string>
+    <string name="confrim_password">Confrim Password</string>
+    <string name="register">Register</string>
+    <string name="already_have_account_sign_in">Already have account? Sign in</string>
+</resources>
