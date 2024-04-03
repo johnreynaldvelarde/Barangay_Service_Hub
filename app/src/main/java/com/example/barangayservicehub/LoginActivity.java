@@ -95,7 +95,7 @@ public class LoginActivity extends AppCompatActivity {
             //password.setError("Please enter password");
         } else {
             // Clear any error icon and message if password is not empty
-            password.setError(null);
+            //password.setError(null);
         }
 
         if(usernameText.isEmpty() || passwordText.isEmpty()){
