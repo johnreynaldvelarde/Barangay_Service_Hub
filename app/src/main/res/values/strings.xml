@@ -14,4 +14,5 @@
     <string name="confrim_password">Confrim Password</string>
     <string name="register">Register</string>
     <string name="already_have_account_sign_in">Already have account? Sign in</string>
+    <string name="remember_me">Remember Me</string>
 </resources>

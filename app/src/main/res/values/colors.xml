@@ -8,8 +8,12 @@
     <color name="background_2">#2290FF</color>
     <color name="background_3">#F6F5FA</color>
     <color name="background_4">#1F2023</color>
+    <color name="blue">#3AA3A5</color>
 
     // logo color
     <color name="dark_blue">#033AA9</color>
     <color name="red">#D9251C</color>
+
+    // eye password color
+    <color name="grey">#737373</color>
 </resources>
