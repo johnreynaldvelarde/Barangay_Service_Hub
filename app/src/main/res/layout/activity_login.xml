@@ -11,9 +11,9 @@
 
     <ImageView
         android:id="@+id/image_logo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="60dp"
         app:srcCompat="@drawable/barangay_logo_2"
         android:layout_gravity="center"/>
 
@@ -21,7 +21,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/poppins_bold"
         android:text="@string/barangay_connect"
         android:textColor="#3C3C3C"
@@ -37,7 +37,8 @@
         android:text="@string/one_step_at_a_time"
         android:textColor="#3C3C3C"
         android:textSize="16sp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -52,7 +53,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:orientation="vertical"
-            android:padding="20dp"
+            android:padding="25dp"
             android:background="@color/white">
 
             <TextView
@@ -65,6 +66,7 @@
                 android:text="@string/login"
                 android:textColor="@color/black_blue"
                 android:textSize="30sp"
+                android:background="@color/white"
                 />
 
 
@@ -97,7 +99,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="15dp"
                 android:background="@color/white"
                 android:fontFamily="@font/poppins_regular"
                 app:boxBackgroundMode="outline"
@@ -116,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/password"
                     android:inputType="textPassword"
-                    android:textColor="@color/black" />
+                    android:textColor="@color/black"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -128,7 +130,9 @@
                         android:layout_height="wrap_content"
                         android:text="@string/remember_me"
                         android:textColor="@color/black_blue"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_marginStart="-5dp"/>
 
                     <TextView
                         android:id="@+id/forget_password_textview"
@@ -138,7 +142,8 @@
                         android:layout_centerVertical="true"
                         android:text="@string/forget_password"
                         android:textColor="@color/black_blue"
-                        android:textSize="13sp" />
+                        android:textSize="13sp"
+                        android:fontFamily="@font/poppins_regular"/>
                     <!--android:clickable="true"-->
                     <!--android:onClick="forgetPasswordClicked" /> -->
 
@@ -151,13 +156,13 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/button_shape_color"
                 android:fontFamily="@font/poppins_bold"
                 android:padding="10dp"
                 android:text="@string/login"
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

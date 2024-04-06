@@ -15,7 +15,7 @@
             <solid android:color="#282f32"/>
         </shape>
     </item>
-    <item android:drawable="@drawable/baseline_ramen_dining_24"
+    <item android:drawable="@drawable/barangay_logo"
         android:top="15dp" android:bottom="15dp"
         android:right="15dp" android:left="15dp"/>
 </layer-list>

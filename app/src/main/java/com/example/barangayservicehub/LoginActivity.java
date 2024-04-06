@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
             //Toast.makeText(this, "Please fill in both username and password fields", Toast.LENGTH_SHORT).show();
         }
         else{
-            Intent intent = new Intent(this, DashboardActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
     }

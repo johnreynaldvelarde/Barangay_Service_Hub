@@ -16,4 +16,15 @@
 
     // eye password color
     <color name="grey">#737373</color>
+
+    // floating button color
+    <color name="pink">#e45eb0</color>
+    <color name="green">#34e3c4</color>
+
+    //figma color
+    <color name="color_population">#D88F91</color>
+    <color name="color_household">#ECCEB2</color>
+    <color name="color_establishment">#E7E79C</color>
+    <color name="color_landmark">#B4E2AF</color>
+
 </resources>
