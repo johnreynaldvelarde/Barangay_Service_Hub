@@ -65,7 +65,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="440dp"
+        android:layout_height="420dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
@@ -139,8 +139,6 @@
                 app:boxStrokeColor="@color/black_blue"
                 app:endIconMode="password_toggle"
                 app:endIconTint="@color/grey"
-                app:helperText="@string/passwordHelper"
-                app:helperTextTextColor="#009688"
                 app:hintTextAppearance="@style/HintTextAppearance"
                 app:hintTextColor="@color/black_blue"
                 app:startIconDrawable="@drawable/account_password"
@@ -157,7 +155,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="15dp"
                 android:hint="@string/confrim_password"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="@color/black_blue"

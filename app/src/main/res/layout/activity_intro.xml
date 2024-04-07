@@ -8,7 +8,7 @@
     tools:context=".IntroActivity"
     android:orientation="vertical"
     android:gravity="center">
-    
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"

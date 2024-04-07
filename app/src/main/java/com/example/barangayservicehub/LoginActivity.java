@@ -69,10 +69,6 @@ public class LoginActivity extends AppCompatActivity {
                 nextLaunchRegister();
             }
         });
-
-    }
-    public void showPasword(){
-
     }
 
     public void checkCredentials(){
@@ -100,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if(usernameText.isEmpty() || passwordText.isEmpty()){
             // Alert the user with a Toast message
-            //Toast.makeText(this, "Please fill in both username and password fields", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Please fill in both username and password fields", Toast.LENGTH_SHORT).show();
         }
         else{
             Intent intent = new Intent(this, MainActivity2.class);

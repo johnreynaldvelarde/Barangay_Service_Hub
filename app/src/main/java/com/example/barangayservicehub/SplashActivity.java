@@ -23,10 +23,16 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
             }
         }, 1000);
-
     }
 
     public void chooseLunchActivity(){
-        startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+        MyConnection conn = new MyConnection(SplashActivity.this);
+
+        if(conn.userAccountEmpty()){
+            startActivity(new Intent(SplashActivity.this, GetStartedActvity.class));
+        }
+        else {
+            startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+        }
     }
 }
