@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="300dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -21,7 +21,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="115dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="116dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,106 +65,118 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="280dp"
+        android:layout_height="440dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
-        <EditText
-            android:id="@+id/register_name"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="56dp"
-            android:background="@drawable/edit_text_shape_color"
-            android:elevation="5dp"
-            android:ems="10"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="@string/enter_your_name"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:paddingStart="25dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="15sp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="vertical"
+            android:padding="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="RtlSymmetry" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/register_email"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="56dp"
-            android:background="@drawable/edit_text_shape_color"
-            android:elevation="5dp"
-            android:ems="10"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="@string/enter_your_email"
-            android:inputType="textEmailAddress"
-            android:padding="10dp"
-            android:paddingStart="25dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_name"
-            tools:ignore="RtlSymmetry" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Register_Name_Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/enter_your_name"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/black_blue"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/grey"
+                app:hintTextAppearance="@style/HintTextAppearance"
+                app:hintTextColor="@color/black_blue"
+                app:startIconDrawable="@drawable/account_person"
+                app:startIconTint="@color/black_blue">
 
-        <EditText
-            android:id="@+id/register_confirmPassword"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="56dp"
-            android:layout_marginBottom="21dp"
-            android:background="@drawable/edit_text_shape_color"
-            android:elevation="5dp"
-            android:ems="10"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="@string/confrim_password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:paddingStart="25dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_password"
-            app:layout_constraintVertical_bias="0.0"
-            tools:ignore="RtlSymmetry" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/register_password"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="18dp"
-            android:layout_marginEnd="56dp"
-            android:background="@drawable/edit_text_shape_color"
-            android:elevation="5dp"
-            android:ems="10"
-            android:fontFamily="@font/poppins_regular"
-            android:hint="@string/enter_your_password"
-            android:inputType="textPassword"
-            android:padding="10dp"
-            android:paddingStart="25dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
-            android:textSize="15sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/register_email"
-            tools:ignore="RtlSymmetry" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="@string/enter_your_email"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/black_blue"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/grey"
+                app:hintTextAppearance="@style/HintTextAppearance"
+                app:hintTextColor="@color/black_blue"
+                app:placeholderText="@string/placeHolder"
+                app:startIconDrawable="@drawable/account_email"
+                app:startIconTint="@color/black_blue">
 
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Register_Password_Text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:hint="@string/enter_your_password"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/black_blue"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/grey"
+                app:helperText="@string/passwordHelper"
+                app:helperTextTextColor="#009688"
+                app:hintTextAppearance="@style/HintTextAppearance"
+                app:hintTextColor="@color/black_blue"
+                app:startIconDrawable="@drawable/account_password"
+                app:startIconTint="@color/black_blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/register_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_regular"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/confrim_password"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="@color/black_blue"
+                app:endIconMode="password_toggle"
+                app:endIconTint="@color/grey"
+                app:hintTextAppearance="@style/HintTextAppearance"
+                app:hintTextColor="@color/black_blue"
+                app:startIconDrawable="@drawable/confrim_password"
+                app:startIconTint="@color/black_blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confrim_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/poppins_regular"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -179,7 +191,6 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="55dp"
-            android:layout_marginTop="5dp"
             android:layout_marginEnd="56dp"
             android:background="@drawable/button_shape_color"
             android:fontFamily="@font/poppins_bold"
@@ -196,7 +207,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="116dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="117dp"
             android:fontFamily="@font/poppins_regular"
             android:text="@string/already_have_account_sign_in"

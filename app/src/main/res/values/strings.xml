@@ -15,4 +15,8 @@
     <string name="register">Register</string>
     <string name="already_have_account_sign_in">Already have account? Sign in</string>
     <string name="remember_me">Remember Me</string>
+
+    <!-- string for register account-->
+    <string name="placeHolder">ex: abc@cdf.com</string>
+    <string name="passwordHelper">Enter Strong Password</string>
 </resources>

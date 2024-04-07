@@ -1,5 +1,6 @@
 package com.example.barangayservicehub;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +16,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -61,25 +65,43 @@ public class RegisterActivity extends AppCompatActivity {
     }
     public void checkCredentials(){
         EditText name = findViewById(R.id.register_name);
+        EditText email = findViewById(R.id.register_email);
         EditText password = findViewById(R.id.register_password);
+        EditText confirm_password = findViewById(R.id.confrim_password);
+
+        TextInputLayout layoutName = findViewById(R.id.Register_Name_Text);
+        TextInputLayout layoutPassword = findViewById(R.id.Register_Password_Text);
+        @SuppressLint("CutPasteId") TextInputEditText editName = findViewById(R.id.register_name);
 
         String nameText = name.getText().toString();
+        String emailText = email.getText().toString();
         String passwordText = password.getText().toString();
+        String confirmPasswordText = confirm_password.getText().toString();
 
         if(nameText.isEmpty()){
-            // Show error icon and message inside the username EditText
-            name.setError("Please enter fullname");
+            name.setError("Please enter the name");
+
         } else {
-            // Clear any error icon and message if username is not empty
             name.setError(null);
         }
 
-        if(passwordText.isEmpty()){
-            // Show error icon and message inside the password EditText
-            password.setError("Please enter password");
+        if(emailText.isEmpty()){
+            email.setError("Please enter the email");
         } else {
-            // Clear any error icon and message if password is not empty
+            email.setError(null);
+        }
+
+        if(passwordText.isEmpty()){
+            layoutPassword.setHelperText("Please enter the password");
+            layoutPassword.setError("");
+        } else {
             password.setError(null);
+        }
+
+        if(confirmPasswordText.isEmpty()){
+            confirm_password.setError("This field cannot empty");
+        } else {
+            confirm_password.setError(null);
         }
 
         if(nameText.isEmpty() || passwordText.isEmpty()){
@@ -87,7 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
             //Toast.makeText(this, "Please fill in both username and password fields", Toast.LENGTH_SHORT).show();
         }
         else{
-            Intent intent = new Intent(this, DashboardActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
     }
@@ -97,7 +119,6 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
-
     public void nextRegisterAccount(){
         checkCredentials();
     }

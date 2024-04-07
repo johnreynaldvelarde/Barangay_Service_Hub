@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/navHome"
         android:title="Home"
         android:icon="@drawable/button_home"/>
 
@@ -10,11 +10,6 @@
         android:id="@+id/service"
         android:title="Service"
         android:icon="@drawable/button_setting"/>
-
-    <item
-        android:id="@+id/fab"
-        android:title=""
-        android:enabled="false"/>
 
 
     <item
