@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.database.Cursor;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class LoginActivity extends AppCompatActivity {
+
+    public static final String EXTRA_MESSAGE = "com.example.registration.MESSAGE";
 
     EditText username, password;
     Button btnLogin;
@@ -39,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 nextLaunchHome();
+
             }
         });
 
@@ -99,8 +103,23 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Please fill in both username and password fields", Toast.LENGTH_SHORT).show();
         }
         else{
-            Intent intent = new Intent(this, MainActivity2.class);
-            startActivity(intent);
+            MyConnection conn = new MyConnection(LoginActivity.this);
+
+            Cursor cursor = conn.loginUserAccount(usernameText, passwordText);
+
+            if(cursor !=null && cursor.moveToFirst()){
+
+                Intent intent = new Intent(this, MainActivity2.class);
+                intent.putExtra(EXTRA_MESSAGE, usernameText);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "Invalid username or password!!!", Toast.LENGTH_SHORT).show();
+            }
+
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
     public void nextLaunchHome(){

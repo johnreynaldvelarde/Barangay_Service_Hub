@@ -76,6 +76,8 @@ public class MyConnection extends SQLiteOpenHelper {
         return  isEmpty;
     }
 
+
+
     // login user account in database
     Cursor loginUserAccount(String enterUsername, String enterPassword){
         SQLiteDatabase db = this.getReadableDatabase();
