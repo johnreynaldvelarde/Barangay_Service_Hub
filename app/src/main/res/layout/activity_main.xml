@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_intro"
+    android:background="@drawable/background_intro_2"
     tools:context=".DashboardActivity">
 
     <ScrollView
@@ -31,7 +31,7 @@
                 android:layout_marginBottom="20dp">
 
                 <ImageView
-                    android:id="@+id/imageView7"
+                    android:id="@+id/mainProfile"
                     android:layout_width="75dp"
                     android:layout_height="75dp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -74,7 +74,7 @@
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView7"
+                    app:layout_constraintStart_toEndOf="@+id/mainProfile"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -286,7 +286,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout5" >
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="0dp"
