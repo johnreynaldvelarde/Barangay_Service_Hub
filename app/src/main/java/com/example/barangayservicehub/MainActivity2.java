@@ -2,10 +2,12 @@ package com.example.barangayservicehub;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -21,10 +23,11 @@ public class MainActivity2 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main2);
 
-        getAccountName();
+        //getAccountName();
 
     }
 
+    /*
     public void getAccountName(){
         upper_name = findViewById(R.id.upper_account_name);
         Intent intent = getIntent();
@@ -32,4 +35,14 @@ public class MainActivity2 extends AppCompatActivity {
 
         upper_name.setText("Hi, " + usernameAccount);
     }
+
+    public boolean onNavigationItemSelected(@NonNull MenuItem item){
+        int itemID = item.getItemId();
+
+        //if(itemID == R.)
+
+        return false;
+    }
+
+     */
 }
