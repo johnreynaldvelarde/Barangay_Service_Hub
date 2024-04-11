@@ -34,7 +34,6 @@
             android:icon="@drawable/ic_settings"/>
 
         <item
-            android:checkable="true"
             android:id="@+id/navLogout"
             android:title="Logout"
             android:icon="@drawable/ic_logout"/>

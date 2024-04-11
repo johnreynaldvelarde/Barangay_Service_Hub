@@ -3,20 +3,15 @@ package com.example.barangayservicehub;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
 import androidx.core.view.GravityCompat;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -27,16 +22,16 @@ import com.example.barangayservicehub.bottom_fragment.DashboardFragment;
 import com.example.barangayservicehub.bottom_fragment.EmergencyFragment;
 import com.example.barangayservicehub.bottom_fragment.FileRequestFragment;
 import com.example.barangayservicehub.bottom_fragment.ServicesFragment;
+import com.example.barangayservicehub.nav_fargment.NewsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements DashboardFragment.DrawerToggleListener {
+public class MainActivity extends AppCompatActivity implements DashboardFragment.DrawerToggleListener, NavigationView.OnNavigationItemSelectedListener {
 
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-    private NavigationView navigationView;
 
     private DrawerLayout drawerLayout;
 
@@ -140,8 +135,51 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
          */
 
         drawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                int itemId = item.getItemId();
+
+                if(itemId == R.id.navNews){
+                    Toast.makeText(MainActivity.this, "News Clicked", Toast.LENGTH_SHORT).show();
+                }
+                else if (itemId == R.id.navLogout){
+                    Toast.makeText(MainActivity.this, "Logout Clicked", Toast.LENGTH_SHORT).show();
+                }
+
+                drawerLayout.closeDrawer(GravityCompat.END);
+
+                return true;
+
+                //return false;
+            }
+        });
+        //navigationView.setNavigationItemSelectedListener(this);
     }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        // Handle navigation view item clicks here
+        int itemId = item.getItemId();
+
+        if(itemId == R.id.navNews){
+            //Toast.makeText(this, "News Clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, NewsActivity.class);
+            startActivity(intent);
+        }
+        else if (itemId == R.id.navLogout){
+            Toast.makeText(this, "Logout Clicked", Toast.LENGTH_SHORT).show();
+        }
+
+        // Close the drawer when item is clicked
+        drawerLayout.closeDrawer(GravityCompat.END);
+
+        return true;
+    }
+
+
 
     @Override
     public void toggleDrawer() {
