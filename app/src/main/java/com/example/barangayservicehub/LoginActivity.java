@@ -109,8 +109,8 @@ public class LoginActivity extends AppCompatActivity {
 
             if(cursor !=null && cursor.moveToFirst()){
 
-                Intent intent = new Intent(this, MainActivity2.class);
-                intent.putExtra(EXTRA_MESSAGE, usernameText);
+                Intent intent = new Intent(this, Sample_Main_Activity.class);
+                //intent.putExtra(EXTRA_MESSAGE, usernameText);
                 startActivity(intent);
             }
             else{

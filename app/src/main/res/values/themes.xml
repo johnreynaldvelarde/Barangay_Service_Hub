@@ -16,6 +16,9 @@
         <item name="android:windowBackground">@drawable/launcher_splash</item>
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
     </style>
-
-
+    
+    <style name="ThemeOverlay.AppCompat.navTheme">
+        <item name="colorPrimary">@color/white</item>
+    </style>
+    
 </resources>

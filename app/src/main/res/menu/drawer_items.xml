@@ -33,5 +33,8 @@
         android:id="@+id/navSetting"
         android:title="Setting"/>
 
+    <item
+        android:id="@+id/navLogout"
+        android:title="Logout"/>
 
 </menu>
