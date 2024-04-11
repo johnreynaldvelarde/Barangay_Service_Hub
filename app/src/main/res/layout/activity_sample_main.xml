@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:id="@+id/drawer_layout"
-    tools:openDrawer="start"
+    tools:openDrawer="end"
     tools:context=".Sample_Main_Activity">
 
     <com.google.android.material.navigation.NavigationView
@@ -16,8 +16,6 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/drawer_items"/>
-
-
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -33,38 +31,28 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/fragment_container"/>
-        
+
+
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            
-            <com.google.android.material.bottomappbar.BottomAppBar
+
+            <FrameLayout
+                android:id="@+id/frame_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_navigation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/bottom_App"
                 android:layout_gravity="bottom"
-                android:backgroundTint="@color/black_blue"
-                app:fabCradleMargin="10dp"
-                app:fabCradleRoundedCornerRadius="50dp">
-
-                <com.google.android.material.bottomnavigation.BottomNavigationView
-                    android:id="@+id/bottomNavigationView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:labelVisibilityMode="labeled"
-                    app:menu="@menu/bottom_menu"
-                    app:itemTextColor="@color/white"
-                    app:itemIconTint="@color/white"
-                    android:background="@android:color/transparent"/>
-
-            </com.google.android.material.bottomappbar.BottomAppBar>
+                app:backgroundTint="@color/black_blue"
+                app:itemIconTint="@color/white"
+                app:itemTextColor="@color/white"
+                app:menu="@menu/bottom_menu" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </RelativeLayout>
-
-
 </androidx.drawerlayout.widget.DrawerLayout>

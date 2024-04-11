@@ -1,4 +1,4 @@
-package com.example.barangayservicehub.nav_fargment;
+package com.example.barangayservicehub.bottom_fragment;
 
 import android.os.Bundle;
 

@@ -3,17 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bottom_fragment.ServicesFragment">
+    tools:context=".bottom_fragment.FileRequestFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Service"
+        android:text="Request File"
         android:textSize="50sp"
         android:textColor="@color/black_blue"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"/>
-
 
 </FrameLayout>

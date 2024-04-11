@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottom_dashboard"
+        android:icon="@drawable/ic_dashboard"
+        android:title="Dashboard"
+        android:contentDescription="Dashboard Ito"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bottom_service"
+        android:icon="@drawable/ic_service"
+        android:title="Service"
+        android:contentDescription="Service Ito"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/bottom_request"
+        android:icon="@drawable/ic_report"
+        android:title="Request"
+        android:contentDescription="Request Ito"
+        app:showAsAction="ifRoom"/>
+
+
+</menu>

@@ -2,23 +2,28 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bottom_home"
-        android:title="Home"
-        android:icon="@drawable/button_home"/>
+        android:id="@+id/bottom_dashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_dashboard"/>
 
     <item
-        android:id="@+id/bottom_services"
+        android:id="@+id/bottom_service"
         android:title="Service"
-        android:icon="@drawable/button_setting"/>
+        android:icon="@drawable/ic_service"/>
 
     <item
         android:id="@+id/bottom_request"
         android:title="Request"
-        android:icon="@drawable/button_important"/>
+        android:icon="@drawable/ic_request"/>
 
     <item
         android:id="@+id/bottom_crime_reporting"
         android:title="Report"
-        android:icon="@drawable/button_report"/>
+        android:icon="@drawable/ic_report"/>
+
+    <item
+        android:id="@+id/bottom_emergency"
+        android:title="Emergency"
+        android:icon="@drawable/ic_emergency"/>
 
 </menu>
