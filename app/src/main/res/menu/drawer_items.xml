@@ -6,30 +6,9 @@
 
         <item
             android:checkable="true"
-            android:id="@+id/navDash"
-            android:title="Dashboard"
-            android:icon="@drawable/ic_dashboard"/>
-
-        <item
-            android:checkable="true"
             android:id="@+id/navNews"
             android:title="News"
             android:icon="@drawable/ic_news"/>
-
-        <item
-            android:checkable="true"
-            android:id="@+id/navServices"
-            android:title="Services"/>
-
-        <item
-            android:checkable="true"
-            android:id="@+id/navRequest"
-            android:title="Request"/>
-
-        <item
-            android:checkable="true"
-            android:id="@+id/navEmergency"
-            android:title="Emergency"/>
 
         <item
             android:checkable="true"
@@ -40,22 +19,25 @@
 
 
     <group
-        android:id="@+id/group3">
+        android:id="@+id/group2">
 
         <item
             android:checkable="true"
             android:id="@+id/navOfficial"
-            android:title="Brgy. Officials"/>
+            android:title="Brgy. Officials"
+            android:icon="@drawable/ic_official"/>
 
         <item
             android:checkable="true"
             android:id="@+id/navSetting"
-            android:title="Setting"/>
+            android:title="Settings"
+            android:icon="@drawable/ic_settings"/>
 
         <item
             android:checkable="true"
             android:id="@+id/navLogout"
-            android:title="Logout"/>
+            android:title="Logout"
+            android:icon="@drawable/ic_logout"/>
     </group>
 
 </menu>
