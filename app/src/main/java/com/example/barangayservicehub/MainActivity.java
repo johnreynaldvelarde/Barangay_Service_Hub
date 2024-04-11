@@ -70,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                 if(itemId == R.id.bottom_dashboard){
                     loadFragment(new DashboardFragment(), false);
+                    getAccountName();
                 }
                 else if(itemId == R.id.bottom_service){
                     loadFragment(new ServicesFragment(), false);
@@ -90,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         loadFragment(new DashboardFragment(), true);
+        getAccountName();
+
     }
 
     // bottom navigation fragment
@@ -100,13 +103,13 @@ public class MainActivity extends AppCompatActivity {
 
         if(isAppInitialized){
             fragmentTransaction.add(R.id.frame_layout, fragment);
+
         }
         else{
             fragmentTransaction.replace(R.id.frame_layout, fragment);
         }
         fragmentTransaction.commit();
     }
-
 
     public void NextProfileAccount(){
         String upperName = upper_name.getText().toString();
@@ -116,10 +119,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void getAccountName(){
-        upper_name = findViewById(R.id.upper_account_name);
-        Intent intent = getIntent();
-        String usernameAccount = intent.getStringExtra(LoginActivity.EXTRA_MESSAGE);
-
-        upper_name.setText(usernameAccount);
+        String username = getIntent().getStringExtra(LoginActivity.EXTRA_MESSAGE);
+        DashboardFragment dashboardFragment = DashboardFragment.newInstance(username);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, dashboardFragment).commit();
     }
 }

@@ -23,6 +23,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.barangayservicehub.bottom_fragment.DashboardFragment;
+
 public class LoginActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.registration.MESSAGE";
@@ -110,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
             if(cursor !=null && cursor.moveToFirst()){
 
                 Intent intent = new Intent(this, MainActivity.class);
-                //intent.putExtra(EXTRA_MESSAGE, usernameText);
+                intent.putExtra(EXTRA_MESSAGE, usernameText);
                 startActivity(intent);
             }
             else{
