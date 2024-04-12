@@ -34,8 +34,9 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
     private FrameLayout frameLayout;
     private FragmentManager fragmentManager;
     private FragmentTransaction fragmentTransaction;
-
     private DrawerLayout drawerLayout;
+
+    private NavigationView navigationView;
 
     TextView upper_name;
 
@@ -85,9 +86,19 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
 
 
         drawerLayout = findViewById(R.id.drawerLayout);
-        NavigationView navigationView = findViewById(R.id.navigationView);
+        navigationView = findViewById(R.id.navigationView);
+        navigationView.bringToFront();
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.END)){
+            drawerLayout.closeDrawer(GravityCompat.END);
+        }
+        else{
+            super.onBackPressed();
+        }
     }
 
     @Override
@@ -117,7 +128,6 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
         // Close the drawer when item is clicked
         item.setCheckable(false);
         drawerLayout.closeDrawer(GravityCompat.END);
-
         return true;
     }
 
@@ -138,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
 
         if(isAppInitialized){
             fragmentTransaction.add(R.id.frame_layout, fragment);
-
         }
         else{
             fragmentTransaction.replace(R.id.frame_layout, fragment);
