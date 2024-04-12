@@ -25,7 +25,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Name"
+        android:text="Barangay Bunsuran"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="5dp"
         android:textColor="@color/white"
@@ -35,7 +35,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Email"
+        android:text="Anak ng Lupa 123# Street, Dulo ng Pilapil"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_regular"
         android:textSize="15sp"/>
