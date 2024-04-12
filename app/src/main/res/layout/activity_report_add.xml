@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".nav_fargment.SettingsActivity">
+    tools:context=".report_module.ReportAddActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_bold"
         android:gravity="center"
-        android:text="Settings"
+        android:text="Add Crime Report"
         android:textColor="@color/black_blue"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="-20dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Settings"
+            android:text="Add Report"
             android:textColor="@color/black_blue"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"

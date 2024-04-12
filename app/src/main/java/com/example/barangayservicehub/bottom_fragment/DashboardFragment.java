@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.barangayservicehub.MainActivity;
+import com.example.barangayservicehub.NotificationActivity;
 import com.example.barangayservicehub.ProfileActivity;
 import com.example.barangayservicehub.R;
 import com.google.android.material.navigation.NavigationView;
@@ -114,11 +115,23 @@ public class DashboardFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ImageView profileImage = view.findViewById(R.id.mainProfile);
+        ImageView btnNotify = view.findViewById(R.id.btnNotification);
+
+        // click profile
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), ProfileActivity.class);
                 intent.putExtra(Constants.USERNAME_EXTRA, username);
+                startActivity(intent);
+            }
+        });
+
+        // click notifcation bell
+        btnNotify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NotificationActivity.class);
                 startActivity(intent);
             }
         });

@@ -1,4 +1,4 @@
-package com.example.barangayservicehub.nav_fargment;
+package com.example.barangayservicehub.report_module;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +12,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.barangayservicehub.R;
 
-public class OfficialActivity extends AppCompatActivity {
+public class ReportAddActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_official);
+        setContentView(R.layout.activity_report_add);
 
         ImageView btnBack = findViewById(R.id.btnBackArrow);
         btnBack.setOnClickListener(new View.OnClickListener() {

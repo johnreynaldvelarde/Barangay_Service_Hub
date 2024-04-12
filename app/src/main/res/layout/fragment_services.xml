@@ -67,7 +67,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="15dp"
+                            android:layout_marginTop="20dp"
                             android:fontFamily="@font/raleway_bold"
                             android:text="Services for you"
                             android:textColor="@color/grey_brown"
@@ -77,7 +77,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="100dp"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="20dp"
+                            android:layout_marginTop="30dp"
                             android:layout_marginEnd="20dp"
                             android:background="@drawable/services_custom_design"
                             android:elevation="5dp">
