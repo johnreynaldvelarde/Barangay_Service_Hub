@@ -100,16 +100,6 @@ public class DashboardFragment extends Fragment {
         void toggleDrawer();
     }
 
-    /*
-    private void toggleDrawer() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.END)) {
-            drawerLayout.closeDrawer(GravityCompat.END);
-        } else {
-            drawerLayout.openDrawer(GravityCompat.END);
-        }
-    }
-     */
-
     private void toggleNavigationView() {
         if (isNavigationViewVisible) {
             navigationView.setVisibility(View.GONE);
@@ -118,7 +108,6 @@ public class DashboardFragment extends Fragment {
         }
         isNavigationViewVisible = !isNavigationViewVisible;
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {

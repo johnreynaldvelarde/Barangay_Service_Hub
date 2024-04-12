@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +21,10 @@ import com.example.barangayservicehub.bottom_fragment.DashboardFragment;
 import com.example.barangayservicehub.bottom_fragment.EmergencyFragment;
 import com.example.barangayservicehub.bottom_fragment.FileRequestFragment;
 import com.example.barangayservicehub.bottom_fragment.ServicesFragment;
+import com.example.barangayservicehub.nav_fargment.FeedbackActivity;
 import com.example.barangayservicehub.nav_fargment.NewsActivity;
+import com.example.barangayservicehub.nav_fargment.OfficialActivity;
+import com.example.barangayservicehub.nav_fargment.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
 
     TextView upper_name;
 
-    ImageButton btnDrawerToggle;
 
     public static final String EXTRA_MESSAGE = "com.example.registration.MESSAGE";
 
@@ -47,22 +48,11 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        /*
-        getAccountName();
-
-        ImageView profileImage = findViewById(R.id.mainProfile);
-        profileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NextProfileAccount();
-            }
-        });
-
-         */
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         frameLayout = findViewById(R.id.frame_layout);
 
+        // bottom navigation
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -86,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
                     loadFragment(new EmergencyFragment(), false);
                 }
 
-
                 return true;
             }
         });
@@ -94,83 +83,35 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
         loadFragment(new DashboardFragment(), true);
         getAccountName();
 
-        /*
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem drawerItem) {
-                int drawer_id = drawerItem.getItemId();
 
-                if(drawer_id == R.id.navDash){
-                    Toast.makeText(MainActivity.this,"Menu Clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if(drawer_id == R.id.navNews){
-                    Toast.makeText(MainActivity.this,"News Clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if(drawer_id == R.id.navServices){
-                    Toast.makeText(MainActivity.this,"Services Clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if(drawer_id == R.id.navRequest){
-                    Toast.makeText(MainActivity.this,"Request Clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if(drawer_id == R.id.navEmergency){
-                    Toast.makeText(MainActivity.this,"Emergency Clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if(drawer_id == R.id.navFeedback){
-                    Toast.makeText(MainActivity.this,"Feedbacl /Suggestions Clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if(drawer_id == R.id.navOfficial){
-                    Toast.makeText(MainActivity.this,"Brgy.Official Clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if(drawer_id == R.id.navSetting){
-                    Toast.makeText(MainActivity.this,"Settings Clicked", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    Toast.makeText(MainActivity.this,"Logout Clicked", Toast.LENGTH_SHORT).show();
-                }
+        drawerLayout = findViewById(R.id.drawerLayout);
+        NavigationView navigationView = findViewById(R.id.navigationView);
+        navigationView.setNavigationItemSelectedListener(this);
 
-                return false;
-            }
-        });
-
-         */
-
-        drawerLayout = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                int itemId = item.getItemId();
-
-                if(itemId == R.id.navNews){
-                    Toast.makeText(MainActivity.this, "News Clicked", Toast.LENGTH_SHORT).show();
-                }
-                else if (itemId == R.id.navLogout){
-                    Toast.makeText(MainActivity.this, "Logout Clicked", Toast.LENGTH_SHORT).show();
-                }
-
-                drawerLayout.closeDrawer(GravityCompat.END);
-
-                return true;
-
-                //return false;
-            }
-        });
-        //navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here
+
         int itemId = item.getItemId();
 
-        if(itemId == R.id.navNews){
-            //Toast.makeText(this, "News Clicked", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, NewsActivity.class);
-            startActivity(intent);
+        if(itemId == R.id.nav_news){
+            startActivity(new Intent(MainActivity.this, NewsActivity.class));
         }
-        else if (itemId == R.id.navLogout){
-            Toast.makeText(this, "Logout Clicked", Toast.LENGTH_SHORT).show();
+        else if(itemId == R.id.nav_feedback){
+            startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
+        }
+        else if(itemId == R.id.nav_official){
+            startActivity(new Intent(MainActivity.this, OfficialActivity.class));
+        }
+        else if(itemId == R.id.nav_setting){
+            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+        }
+        else{
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
         }
 
         // Close the drawer when item is clicked
@@ -178,8 +119,6 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
 
         return true;
     }
-
-
 
     @Override
     public void toggleDrawer() {
@@ -189,17 +128,6 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
             drawerLayout.openDrawer(GravityCompat.END);
         }
     }
-
-    /*
-    public void toggleDrawer() {
-        DrawerLayout drawer = findViewById(R.id.nav_view);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            drawer.openDrawer(GravityCompat.START);
-        }
-    }
-     */
 
     // bottom navigation fragment
     private void loadFragment(Fragment fragment, boolean isAppInitialized)
@@ -215,13 +143,6 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
             fragmentTransaction.replace(R.id.frame_layout, fragment);
         }
         fragmentTransaction.commit();
-    }
-
-    public void NextProfileAccount(){
-        String upperName = upper_name.getText().toString();
-        Intent intent  = new Intent(this, ProfileActivity.class);
-        intent.putExtra(EXTRA_MESSAGE, upperName);
-        startActivity(intent);
     }
 
     public void getAccountName(){
