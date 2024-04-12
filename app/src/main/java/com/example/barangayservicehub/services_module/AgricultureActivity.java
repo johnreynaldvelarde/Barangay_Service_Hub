@@ -1,4 +1,4 @@
-package com.example.barangayservicehub.nav_fargment;
+package com.example.barangayservicehub.services_module;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +12,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.barangayservicehub.R;
 
-public class NewsActivity extends AppCompatActivity {
+public class AgricultureActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_news);
+        setContentView(R.layout.activity_agriculture);
 
         ImageView btnBack = findViewById(R.id.btnBackArrow);
         btnBack.setOnClickListener(new View.OnClickListener() {

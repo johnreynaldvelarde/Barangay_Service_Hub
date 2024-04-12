@@ -115,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
         }
 
         // Close the drawer when item is clicked
+        item.setCheckable(false);
         drawerLayout.closeDrawer(GravityCompat.END);
 
         return true;

@@ -54,13 +54,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void getProfileName(){
-        /*
-        profile_name = findViewById(R.id.profileName);
-        Intent intent = getIntent();
-        String usernameAccount = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        profile_name.setText(usernameAccount);
 
-         */
         String username = getIntent().getStringExtra(DashboardFragment.Constants.USERNAME_EXTRA);
 
         TextView profileNameTextView = findViewById(R.id.profileName);
