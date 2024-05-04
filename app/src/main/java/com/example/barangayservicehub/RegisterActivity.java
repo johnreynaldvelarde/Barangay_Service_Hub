@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                checkCredentials();
+                register_account();
             }
         });
 
@@ -75,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void checkCredentials(){
+    public void register_account(){
 
         name = findViewById(R.id.register_name);
         email = findViewById(R.id.register_email);
@@ -157,7 +157,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
-
         if(nameText.isEmpty()){
             layoutName.setError("* Fill in the blank");
         }
@@ -195,9 +194,7 @@ public class RegisterActivity extends AppCompatActivity {
                 conn.addRegisterUser(nameText, emailText, passwordText, Boolean.FALSE);
                 nextLaunchLogin();
             } catch (Exception e) {
-                // Handle any potential exceptions that might occur during registration
                 e.printStackTrace();
-                // You can show an error message to the user, for example:
                 Toast.makeText(this, "Registration failed. Please try again later.", Toast.LENGTH_SHORT).show();
             }
         }

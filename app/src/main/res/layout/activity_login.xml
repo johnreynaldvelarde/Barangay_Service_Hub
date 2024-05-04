@@ -38,7 +38,7 @@
         android:textColor="#3C3C3C"
         android:textSize="16sp"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="10dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -71,6 +71,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_username_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -84,7 +85,9 @@
                 app:hintTextColor="@color/black_blue"
                 app:startIconDrawable="@drawable/account_person"
                 app:startIconTint="@color/black_blue"
-                app:hintTextAppearance="@style/HintTextAppearance">
+                app:hintTextAppearance="@style/HintTextAppearance"
+                app:counterEnabled="true"
+                app:counterMaxLength="100">
 
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -97,6 +100,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_password_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
@@ -110,7 +114,10 @@
                 app:hintTextAppearance="@style/HintTextAppearance"
                 app:hintTextColor="@color/black_blue"
                 app:startIconDrawable="@drawable/account_password"
-                app:startIconTint="@color/black_blue">
+                app:startIconTint="@color/black_blue"
+                app:counterEnabled="true"
+                app:counterMaxLength="100">
+
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_password"

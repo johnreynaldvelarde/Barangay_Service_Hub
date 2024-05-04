@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.SpannableString;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.text.style.ForegroundColorSpan;
@@ -24,6 +26,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.barangayservicehub.bottom_fragment.DashboardFragment;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -81,46 +84,71 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.login_username);
         password = findViewById(R.id.login_password);
 
+        TextInputLayout loginLayoutPassword = findViewById(R.id.login_password_layout);
+        TextInputLayout loginlayoutUsername = findViewById(R.id.login_username_layout);
+
         String usernameText = username.getText().toString();
         String passwordText = password.getText().toString();
 
+        username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                loginlayoutUsername.setError(null);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                loginLayoutPassword.setError(null);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         if(usernameText.isEmpty()){
-            // Show error icon and message inside the username EditText
-            username.setError("Please enter username");
+            loginlayoutUsername.setError("* Fill in the blank");
+        } else if (passwordText.isEmpty())
+        {
+            loginLayoutPassword.setError("* Fill in the blank");
         } else {
-            // Clear any error icon and message if username is not empty
-            username.setError(null);
-        }
 
-        if(passwordText.isEmpty()){
-            // Show error icon and message inside the password EditText
-            //password.setError("Please enter password");
-        } else {
-            // Clear any error icon and message if password is not empty
-            //password.setError(null);
-        }
+            try{
+                MyConnection conn = new MyConnection(LoginActivity.this);
 
-        if(usernameText.isEmpty() || passwordText.isEmpty()){
-            // Alert the user with a Toast message
-            Toast.makeText(this, "Please fill in both username and password fields", Toast.LENGTH_SHORT).show();
-        }
-        else{
-            MyConnection conn = new MyConnection(LoginActivity.this);
+                Cursor cursor = conn.loginUserAccount(usernameText, passwordText);
 
-            Cursor cursor = conn.loginUserAccount(usernameText, passwordText);
+                if(cursor !=null && cursor.moveToFirst()){
 
-            if(cursor !=null && cursor.moveToFirst()){
-
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(EXTRA_MESSAGE, usernameText);
-                startActivity(intent);
-            }
-            else{
-                Toast.makeText(getApplicationContext(), "Invalid username or password!!!", Toast.LENGTH_SHORT).show();
-            }
-
-            if (cursor != null) {
-                cursor.close();
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.putExtra(EXTRA_MESSAGE, usernameText);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Invalid username or password!!!", Toast.LENGTH_SHORT).show();
+                }
+                if (cursor != null) {
+                    cursor.close();
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Login failed. Please try again later.", Toast.LENGTH_SHORT).show();
             }
         }
     }
