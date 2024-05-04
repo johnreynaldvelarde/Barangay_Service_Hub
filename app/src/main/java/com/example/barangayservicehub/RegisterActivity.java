@@ -9,36 +9,50 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.Firebase;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
 
     EditText name, email , password, confirm_password;
+    FirebaseAuth mAuth;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
+        mAuth = FirebaseAuth.getInstance();
+
 
         Button btnRegister = findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 register_account();
+
             }
         });
 
@@ -76,6 +90,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register_account(){
+
+        progressBar = findViewById(R.id.progressBar);
 
         name = findViewById(R.id.register_name);
         email = findViewById(R.id.register_email);
@@ -190,9 +206,30 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
             try {
+                progressBar.setVisibility(View.VISIBLE);
+
+                mAuth.createUserWithEmailAndPassword(emailText, passwordText)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                if (task.isSuccessful()) {
+                                    progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                                    nextLaunchLogin();
+
+                                } else {
+                                    progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                /*
                 MyConnection conn = new MyConnection(RegisterActivity.this);
                 conn.addRegisterUser(nameText, emailText, passwordText, Boolean.FALSE);
                 nextLaunchLogin();
+
+                 */
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Registration failed. Please try again later.", Toast.LENGTH_SHORT).show();

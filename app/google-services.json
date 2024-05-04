@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "640227806439",
+    "project_id": "barangay-connect-firebase",
+    "storage_bucket": "barangay-connect-firebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:640227806439:android:706f1fe66b229346726642",
+        "android_client_info": {
+          "package_name": "com.example.barangayservicehub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4gFXmMFjjP2e8-aPiRBfSw-RKoplzm6w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
