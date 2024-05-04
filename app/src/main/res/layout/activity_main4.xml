@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity4">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Register_Name_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/enter_your_name"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/black_blue"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/grey"
+        app:helperText="* Required"
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        app:hintTextAppearance="@style/HintTextAppearance"
+        app:hintTextColor="@color/black_blue"
+        app:layout_constraintBottom_toTopOf="@+id/Register_Email_Text"
+        app:startIconDrawable="@drawable/account_person"
+        app:startIconTint="@color/black_blue">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Register_Email_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/enter_your_email"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/black_blue"
+        app:endIconMode="clear_text"
+        app:endIconTint="@color/grey"
+        app:helperText="* Required"
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        app:hintTextAppearance="@style/HintTextAppearance"
+        app:hintTextColor="@color/black_blue"
+        app:layout_constraintBottom_toTopOf="@+id/Register_Password_Text"
+        app:placeholderText="@string/placeHolder"
+        app:startIconDrawable="@drawable/account_email"
+        app:startIconTint="@color/black_blue">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Register_Password_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:hint="@string/enter_your_password"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/black_blue"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/grey"
+        app:helperText="* Required"
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        app:hintTextAppearance="@style/HintTextAppearance"
+        app:hintTextColor="@color/black_blue"
+        app:layout_constraintBottom_toTopOf="@+id/Register_Confrim_Text"
+        app:startIconDrawable="@drawable/account_password"
+        app:startIconTint="@color/black_blue">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/Register_Confrim_Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/confrim_password"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="@color/black_blue"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/grey"
+        app:helperText="* Required"
+        app:helperTextTextColor="@android:color/holo_red_dark"
+        app:hintTextAppearance="@style/HintTextAppearance"
+        app:hintTextColor="@color/black_blue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:startIconDrawable="@drawable/confrim_password"
+        app:startIconTint="@color/black_blue">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confrim_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/poppins_regular"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

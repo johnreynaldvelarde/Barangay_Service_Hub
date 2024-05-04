@@ -4,8 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
@@ -82,54 +84,124 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         TextInputLayout layoutName = findViewById(R.id.Register_Name_Text);
+        TextInputLayout layoutEmail = findViewById(R.id.Register_Email_Text);
         TextInputLayout layoutPassword = findViewById(R.id.Register_Password_Text);
-        @SuppressLint("CutPasteId") TextInputEditText editName = findViewById(R.id.register_name);
+        TextInputLayout layoutConfirm = findViewById(R.id.Register_Confrim_Text);
 
         String nameText = name.getText().toString();
         String emailText = email.getText().toString();
         String passwordText = password.getText().toString();
         String confirmPasswordText = confirm_password.getText().toString();
 
+
+        name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                layoutName.setError(null);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        email.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                layoutEmail.setError(null);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                layoutPassword.setError(null);
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+        confirm_password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                layoutConfirm.setError(null);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
+
         if(nameText.isEmpty()){
-            name.setError("Please enter the name");
-
-        } else {
-            name.setError(null);
+            layoutName.setError("* Fill in the blank");
         }
-
-        if(emailText.isEmpty()){
-            email.setError("Please enter the email");
-        } else {
-            email.setError(null);
+        else if (emailText.isEmpty()){
+            layoutEmail.setError("* Fill in the blank");
         }
+        else{
 
-        if(passwordText.isEmpty()){
-            //layoutPassword.setHelperText("Please enter the password");
-            layoutPassword.setError("");
-        } else {
-            password.setError(null);
-        }
+            if(passwordText.isEmpty()){
+                layoutPassword.setError("* Required");
+                return;
+            } else if (passwordText.length() < 8) {
+                layoutPassword.setError("Password must be 8 characters long.");
+                return;
+            } else if (!passwordText.matches(".*[@#$%^&+=].*")){
+                layoutPassword.setError("Password must contain a special character.");
+                return;
+            } else {
+                layoutPassword.setError(null);
+            }
 
-        if(confirmPasswordText.isEmpty()){
-            layoutPassword.setError("");
-            //confirm_password.setError("This field cannot empty");
-        } else {
-            confirm_password.setError(null);
-        }
 
-        if(nameText.isEmpty() || passwordText.isEmpty()){
-            // Alert the user with a Toast message
-            Toast.makeText(this, "Please fill in both username and password fields", Toast.LENGTH_SHORT).show();
-        }
-        else if (emailText.isEmpty()) {
-            Toast.makeText(this, "Please fill the email", Toast.LENGTH_SHORT).show();
-        } else{
-            MyConnection conn = new MyConnection(RegisterActivity.this);
-            conn.addRegisterUser(nameText, emailText, passwordText, Boolean.FALSE);
-            nextLaunchLogin();
+            if(!passwordText.equals(confirmPasswordText)){
+                layoutConfirm.setError("Password do not match");
+                if(confirmPasswordText.isEmpty()){
+                    layoutConfirm.setError("* Required");
+                }
+                return;
+            } else {
+                layoutConfirm.setError(null);
+            }
+
+            try {
+                MyConnection conn = new MyConnection(RegisterActivity.this);
+                conn.addRegisterUser(nameText, emailText, passwordText, Boolean.FALSE);
+                nextLaunchLogin();
+            } catch (Exception e) {
+                // Handle any potential exceptions that might occur during registration
+                e.printStackTrace();
+                // You can show an error message to the user, for example:
+                Toast.makeText(this, "Registration failed. Please try again later.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
-
 
     public void nextRegisterAccount(){
 
