@@ -1,29 +1,13 @@
-package com.example.barangayservicehub.all_class;
-
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.widget.Toast;
+package com.example.barangayservicehub.connector;
 
 import androidx.annotation.NonNull;
 
-import com.example.barangayservicehub.all_class.User_Account;
-import com.google.android.gms.auth.api.signin.internal.Storage;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
-
-import java.io.ByteArrayOutputStream;
 
 public class Firebase_Connect {
 
@@ -34,13 +18,48 @@ public class Firebase_Connect {
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
+    // create a admin automatically
+
+    public void checkAndCreateAdminIfNeeded(){
+        DatabaseReference userAccountRef = mDatabase.child("User_Account");
+        userAccountRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()){
+                    createAdminUser();
+                }
+                else {
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+    private void createAdminUser() {
+        final String adminUsername = "admin";
+        final String adminPassword = "admin12345";
+
+        try {
+            String userId = mDatabase.child("User_Account").push().getKey();
+            User_Account adminUser = new User_Account(adminUsername, "", adminPassword, 1);
+            mDatabase.child("User_Account").child(userId).setValue(adminUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     // Register Activity
     public boolean Register(String name, String email, String password, int account_type ){
         try {
 
-            String User_ID = mDatabase.child("User_Account").push().getKey();
+            String userId = mDatabase.child("User_Account").push().getKey();
             User_Account register = new User_Account(name, email, password, account_type);
-            mDatabase.child("User_Account").child(User_ID).setValue(register);
+            mDatabase.child("User_Account").child(userId).setValue(register);
 
             return true;
         }

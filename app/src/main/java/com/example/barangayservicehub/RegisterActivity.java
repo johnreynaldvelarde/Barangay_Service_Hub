@@ -1,20 +1,15 @@
 package com.example.barangayservicehub;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
-import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,12 +17,10 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.barangayservicehub.all_class.Firebase_Connect;
+import com.example.barangayservicehub.connector.Firebase_Connect;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
-
-import java.io.ByteArrayOutputStream;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -35,7 +28,7 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressBar progressBar;
 
-    Firebase_Connect connect;
+    final Firebase_Connect connect;
 
     public RegisterActivity(){
         connect = new Firebase_Connect();
@@ -232,8 +225,12 @@ public class RegisterActivity extends AppCompatActivity {
                             }
 
                             if (!usernameExists && !emailExists) {
+
+                                SQLConnection conn = new SQLConnection(RegisterActivity.this);
                                 boolean result = connect.Register(nameText, emailText, passwordText, 0);
+
                                 if (result) {
+                                    conn.addRegisterUser(nameText, emailText, passwordText, Boolean.FALSE);
                                     nextLaunchLogin();
                                     Toast.makeText(RegisterActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
                                 } else {

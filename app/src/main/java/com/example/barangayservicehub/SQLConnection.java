@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-public class MyConnection extends SQLiteOpenHelper {
+public class SQLConnection extends SQLiteOpenHelper {
 
     private  Context context;
     private static final String DATABASE_NAME ="Barangay.db";
@@ -31,7 +31,7 @@ public class MyConnection extends SQLiteOpenHelper {
     private static final String Remember_Password = "Remember_Password";
 
 
-    public MyConnection(@Nullable Context context) {
+    public SQLConnection(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
     }

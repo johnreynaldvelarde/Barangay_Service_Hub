@@ -4,13 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.example.barangayservicehub.connector.Firebase_Connect;
+
 
 public class SplashActivity extends AppCompatActivity {
+
+    final Firebase_Connect connect;
+
+    public SplashActivity(){
+        connect = new Firebase_Connect();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +31,8 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     public void chooseLunchActivity(){
-        MyConnection conn = new MyConnection(SplashActivity.this);
-
+        SQLConnection conn = new SQLConnection(SplashActivity.this);
+        connect.checkAndCreateAdminIfNeeded();
         if(conn.userAccountEmpty()){
             startActivity(new Intent(SplashActivity.this, GetStartedActvity.class));
         }

@@ -1,4 +1,4 @@
-package com.example.barangayservicehub.all_class;
+package com.example.barangayservicehub.connector;
 
 public class User_Account {
     private String name, email, password;
