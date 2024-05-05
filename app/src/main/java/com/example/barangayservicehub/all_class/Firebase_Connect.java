@@ -10,9 +10,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.concurrent.CountDownLatch;
 
 public class Firebase_Connect {
 
@@ -22,7 +21,6 @@ public class Firebase_Connect {
     public Firebase_Connect(){
         mDatabase = FirebaseDatabase.getInstance().getReference();
     }
-
 
     // Register Activity
     public boolean Register(String name, String email, String password, int account_type ){
@@ -40,30 +38,51 @@ public class Firebase_Connect {
         }
     }
 
-    public boolean checkExistingUserName(String username) {
-        final CountDownLatch latch = new CountDownLatch(1);
+    // existing username
+    public void checkExistingUser(String username, String email, UserNameCheckCallback callback) {
         DatabaseReference userAccountRef = mDatabase.child("User_Account");
+        Query query = userAccountRef.orderByChild("name").equalTo(username);
 
-        userAccountRef.orderByChild("name").equalTo(username).addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                exists = dataSnapshot.exists(); // Update the exists field
-                latch.countDown();
+                boolean exists = dataSnapshot.exists();
+                callback.onUserNameCheckResult(exists);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                latch.countDown();
+                callback.onUserNameCheckError(error);
             }
         });
-
-        try {
-            latch.await(); // Wait for the database operation to complete
-            return exists; // Return true if username exists, false otherwise
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            return false;
-        }
     }
 
+    // existing email
+    public void checkExistingEmail(String email, EmailCheckCallback callback) {
+        DatabaseReference userAccountRef = mDatabase.child("User_Account");
+        Query query = userAccountRef.orderByChild("email").equalTo(email);
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                boolean exists = dataSnapshot.exists();
+                callback.onEmailCheckResult(exists);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                callback.onEmailCheckError(error);
+            }
+        });
+    }
+
+    public interface UserNameCheckCallback {
+        void onUserNameCheckResult(boolean exists);
+        void onUserNameCheckError(DatabaseError error);
+    }
+
+    public interface EmailCheckCallback {
+        void onEmailCheckResult(boolean exists);
+        void onEmailCheckError(DatabaseError error);
+    }
 }

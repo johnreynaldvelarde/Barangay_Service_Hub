@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.barangayservicehub.all_class.Firebase_Connect;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseError;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -167,7 +168,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-
         if(nameText.isEmpty()){
             layoutName.setError("* Fill in the blank");
         }
@@ -199,83 +199,60 @@ public class RegisterActivity extends AppCompatActivity {
                 layoutConfirm.setError(null);
             }
 
-            try {
-                progressBar.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
 
-
-                //boolean checkAccount = connect.checkExistingUserName(nameText);
-                boolean result = connect.Register(nameText, emailText, passwordText, 0);
-
-                if(result){
-                    nextLaunchLogin();
-                    Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show();
+            connect.checkExistingUser(nameText, emailText, new Firebase_Connect.UserNameCheckCallback() {
+                @Override
+                public void onUserNameCheckResult(boolean usernameExists) {
                     progressBar.setVisibility(View.GONE);
-                }
-                else {
-                    Toast.makeText(this, "Registration failed. Please try again later.", Toast.LENGTH_SHORT).show();
-                }
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Registration failed. Please try again later.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
+                    if (usernameExists) {
 
-    public void nextRegisterAccount(){
+                        layoutName.setError("* Username already exists.");
+                    } else {
 
-        name = findViewById(R.id.register_name);
-        email = findViewById(R.id.register_email);
-        password = findViewById(R.id.register_password);
-        confirm_password = findViewById(R.id.confrim_password);
+                        layoutName.setError(null);
+                    }
 
-        String registerUsername = name.getText().toString();
-        String registerEmail = email.getText().toString();
-        String registerPassword = password.getText().toString();
-        String registerConfirm = confirm_password.getText().toString();
+                    // Check if email already exists
+                    connect.checkExistingEmail(emailText, new Firebase_Connect.EmailCheckCallback() {
+                        @Override
+                        public void onEmailCheckResult(boolean emailExists) {
+                            if (emailExists) {
+                                // Display error message if email already exists
+                                layoutEmail.setError("* Email already exists.");
+                            } else {
 
+                                layoutEmail.setError(null);
+                            }
 
-        if(TextUtils.isEmpty(registerUsername)){
-            Toast.makeText(getApplicationContext(), "The username is empty!!!" , Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(registerEmail)){
-            Toast.makeText(getApplicationContext(), "The email is empty!!!" , Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(registerPassword)){
-            Toast.makeText(getApplicationContext(), "The password is empty!!!" , Toast.LENGTH_SHORT).show();
-        }
-        else if(TextUtils.isEmpty(registerConfirm)){
-            Toast.makeText(getApplicationContext(), "The confirm password is empty!!!" , Toast.LENGTH_SHORT).show();
-        }
-        else{
-            MyConnection conn = new MyConnection(RegisterActivity.this);
-            conn.addRegisterUser(registerUsername, registerEmail, registerPassword, Boolean.FALSE);
-            nextLaunchLogin();
-
-
-            /*
-                mAuth.createUserWithEmailAndPassword(emailText, passwordText)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-
-                                if (task.isSuccessful()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                            // Proceed with registration if both username and email are unique
+                            if (!usernameExists && !emailExists) {
+                                boolean result = connect.Register(nameText, emailText, passwordText, 0);
+                                if (result) {
                                     nextLaunchLogin();
-
+                                    Toast.makeText(RegisterActivity.this, "Registration successful.", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                    // Registration failed
+                                    Toast.makeText(RegisterActivity.this, "Registration failed. Please try again later.", Toast.LENGTH_SHORT).show();
                                 }
                             }
-                        });
-                /*
-                MyConnection conn = new MyConnection(RegisterActivity.this);
-                conn.addRegisterUser(nameText, emailText, passwordText, Boolean.FALSE);
-                nextLaunchLogin();
+                        }
 
-                 */
+                        @Override
+                        public void onEmailCheckError(DatabaseError error) {
+
+                            Toast.makeText(RegisterActivity.this, "Error checking email: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+                @Override
+                public void onUserNameCheckError(DatabaseError error) {
+                    // Handle error if occurred during username check
+                    Toast.makeText(RegisterActivity.this, "Error checking username: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE); // Always hide progress bar after checking
+                }
+            });
         }
     }
 }
