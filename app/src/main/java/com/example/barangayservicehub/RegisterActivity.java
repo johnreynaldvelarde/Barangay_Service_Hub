@@ -1,6 +1,5 @@
 package com.example.barangayservicehub;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,20 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
+import com.example.barangayservicehub.all_class.Firebase_Connect;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.Firebase;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -39,12 +28,18 @@ public class RegisterActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressBar progressBar;
 
+    Firebase_Connect connect;
+
+    public RegisterActivity(){
+        connect = new Firebase_Connect();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
-        mAuth = FirebaseAuth.getInstance();
+        //mAuth = FirebaseAuth.getInstance();
 
 
         Button btnRegister = findViewById(R.id.btnRegister);
@@ -194,7 +189,6 @@ public class RegisterActivity extends AppCompatActivity {
                 layoutPassword.setError(null);
             }
 
-
             if(!passwordText.equals(confirmPasswordText)){
                 layoutConfirm.setError("Password do not match");
                 if(confirmPasswordText.isEmpty()){
@@ -208,28 +202,19 @@ public class RegisterActivity extends AppCompatActivity {
             try {
                 progressBar.setVisibility(View.VISIBLE);
 
-                mAuth.createUserWithEmailAndPassword(emailText, passwordText)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                                if (task.isSuccessful()) {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-                                    nextLaunchLogin();
+                //boolean checkAccount = connect.checkExistingUserName(nameText);
+                boolean result = connect.Register(nameText, emailText, passwordText, 0);
 
-                                } else {
-                                    progressBar.setVisibility(View.GONE);
-                                    Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                /*
-                MyConnection conn = new MyConnection(RegisterActivity.this);
-                conn.addRegisterUser(nameText, emailText, passwordText, Boolean.FALSE);
-                nextLaunchLogin();
+                if(result){
+                    nextLaunchLogin();
+                    Toast.makeText(this, "Registration successful.", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+                else {
+                    Toast.makeText(this, "Registration failed. Please try again later.", Toast.LENGTH_SHORT).show();
+                }
 
-                 */
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(this, "Registration failed. Please try again later.", Toast.LENGTH_SHORT).show();
@@ -266,6 +251,31 @@ public class RegisterActivity extends AppCompatActivity {
             MyConnection conn = new MyConnection(RegisterActivity.this);
             conn.addRegisterUser(registerUsername, registerEmail, registerPassword, Boolean.FALSE);
             nextLaunchLogin();
+
+
+            /*
+                mAuth.createUserWithEmailAndPassword(emailText, passwordText)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                if (task.isSuccessful()) {
+                                    progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                                    nextLaunchLogin();
+
+                                } else {
+                                    progressBar.setVisibility(View.GONE);
+                                    Toast.makeText(RegisterActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                /*
+                MyConnection conn = new MyConnection(RegisterActivity.this);
+                conn.addRegisterUser(nameText, emailText, passwordText, Boolean.FALSE);
+                nextLaunchLogin();
+
+                 */
         }
     }
 }
