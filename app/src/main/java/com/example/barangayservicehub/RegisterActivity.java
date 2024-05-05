@@ -1,7 +1,10 @@
 package com.example.barangayservicehub;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
@@ -11,6 +14,7 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +26,8 @@ import com.example.barangayservicehub.all_class.Firebase_Connect;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
+
+import java.io.ByteArrayOutputStream;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -93,7 +99,6 @@ public class RegisterActivity extends AppCompatActivity {
         email = findViewById(R.id.register_email);
         password = findViewById(R.id.register_password);
         confirm_password = findViewById(R.id.confrim_password);
-
 
         TextInputLayout layoutName = findViewById(R.id.Register_Name_Text);
         TextInputLayout layoutEmail = findViewById(R.id.Register_Email_Text);
@@ -226,7 +231,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 layoutEmail.setError(null);
                             }
 
-                            // Proceed with registration if both username and email are unique
                             if (!usernameExists && !emailExists) {
                                 boolean result = connect.Register(nameText, emailText, passwordText, 0);
                                 if (result) {
@@ -238,7 +242,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 }
                             }
                         }
-
                         @Override
                         public void onEmailCheckError(DatabaseError error) {
 
