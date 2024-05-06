@@ -121,12 +121,11 @@ public class Firebase_Connect {
     // -- MODULE --
 
     // CRIME REPORT MODULE
-    public boolean addCrimeReport(){
+    public boolean addCrimeReport(String userID, String title, String location, String comment, String getDate){
         try{
             String reportId = mDatabase.child("Crime_Report").push().getKey();
-            //User_Account register = new User_Account(name, email, password, account_type);
-            //mDatabase.child("Crime_Report").child(reportId).setValue(register);
-
+            Add_Crime_Report add_report = new Add_Crime_Report(userID, title, location, comment, getDate);
+            mDatabase.child("Crime_Report").child(reportId).setValue(add_report);
             return  true;
         }
         catch (Exception e) {
