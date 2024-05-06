@@ -3,15 +3,16 @@ package com.example.barangayservicehub.connector;
 import java.util.Date;
 
 public class Add_Crime_Report {
-    private String userId, title, location, comment, dateAdded;
+    private String userId, title, location, comment, dateAdded, crimeImageURL;
     private int reportStatus;
 
-    public Add_Crime_Report(String userId, String title, String location, String comment, String dateAdded, int reportStatus) {
+    public Add_Crime_Report(String userId, String title, String location, String comment, String dateAdded, String crimeImageURL, int reportStatus) {
         this.userId = userId;
         this.title = title;
         this.location = location;
         this.comment = comment;
         this.dateAdded = dateAdded;
+        this.crimeImageURL = crimeImageURL;
         this.reportStatus = reportStatus;
     }
 
@@ -53,6 +54,14 @@ public class Add_Crime_Report {
 
     public void setDateAdded(String dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    public String getCrimeImageURL() {
+        return crimeImageURL;
+    }
+
+    public void setCrimeImageURL(String crimeImageURL) {
+        this.crimeImageURL = crimeImageURL;
     }
 
     public int getReportStatus() {

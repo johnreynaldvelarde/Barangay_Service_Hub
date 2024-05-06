@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,12 +14,15 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,13 +32,21 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.connector.Firebase_Connect;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.UUID;
 
 public class ReportAddActivity extends AppCompatActivity {
 
@@ -44,10 +56,12 @@ public class ReportAddActivity extends AppCompatActivity {
 
     final Firebase_Connect connect;
 
-    Button btnCrimeReport;
+    FrameLayout btnCrimeReport;
     ImageButton btnCameraGallery;
     ImageView btnBack, preview_Image;
-    TextView viewDate, title, location, comment;
+    TextView viewDate, title, location, comment, reportSubmitBtn;
+
+    ProgressBar progressBar;
 
     public ReportAddActivity(){
         connect = new Firebase_Connect();
@@ -63,6 +77,11 @@ public class ReportAddActivity extends AppCompatActivity {
         viewDate = findViewById(R.id.crime_date_now);
         String currentDate = getCurrentDate();
         viewDate.setText(currentDate);
+
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.bringToFront();
+
+        reportSubmitBtn = findViewById(R.id.textReportSubmitBtn);
 
         btnBack = findViewById(R.id.btnBackArrow);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +103,8 @@ public class ReportAddActivity extends AppCompatActivity {
         btnCrimeReport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                reportSubmitBtn.setVisibility(View.INVISIBLE);
                 submitCrimeReport();
             }
         });
@@ -174,6 +195,8 @@ public class ReportAddActivity extends AppCompatActivity {
         String locationText = location.getText().toString();
         String commentText = comment.getText().toString();
 
+        preview_Image = findViewById(R.id.previewImage);
+
         title.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -226,10 +249,14 @@ public class ReportAddActivity extends AppCompatActivity {
         });
 
         if(titleText.isEmpty()){
+            finishActionProgressBar();
             layoutTitle.setError("* Fill in the blank");
+
         } else if (locationText.isEmpty()) {
+            finishActionProgressBar();
             layoutLocation.setError("* Fill in the blank");
         } else if (commentText.isEmpty()) {
+            finishActionProgressBar();
             layoutComment.setError("* Fill in the blank");
         }
         else {
@@ -237,6 +264,69 @@ public class ReportAddActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
             String userID = sharedPreferences.getString("userID", "");
 
+            if(preview_Image.getDrawable() == null){
+
+                String emptyImageUrl = "";
+
+                boolean result = connect.addCrimeReport(userID, titleText, locationText, commentText, emptyImageUrl);
+                if (result) {
+                    finishActionProgressBar();
+
+                    Toast.makeText(ReportAddActivity.this, "Crime report added successfully", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(ReportAddActivity.this, "Failed to add crime report", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else{
+
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+                StorageReference imagesRef = storageRef.child("Crime_Report/" + UUID.randomUUID().toString());
+                BitmapDrawable drawable = (BitmapDrawable) preview_Image.getDrawable();
+                Bitmap bitmap = drawable.getBitmap();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] data = baos.toByteArray();
+
+                UploadTask uploadTask = imagesRef.putBytes(data);
+
+                uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+
+                        if(task.isSuccessful()){
+                            imagesRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+
+                                    String imageUrl = uri.toString();
+
+                                    // Get userID from SharedPreferences
+                                    SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                                    String userID = sharedPreferences.getString("userID", "");
+
+                                    // Call addCrimeReport method with userID and imageUrl
+                                    boolean result = connect.addCrimeReport(userID, titleText, locationText, commentText, imageUrl);
+                                    if (result) {
+                                        finishActionProgressBar();
+
+                                        Toast.makeText(ReportAddActivity.this, "Crime report added successfully", Toast.LENGTH_SHORT).show();
+                                        finish();
+                                    } else {
+                                        Toast.makeText(ReportAddActivity.this, "Failed to add crime report", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                        else{
+                            Toast.makeText(ReportAddActivity.this, "Failed to upload image", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+
+
+            /*
             boolean result = connect.addCrimeReport( userID, titleText, locationText, commentText);
             if (result) {
                 Toast.makeText(ReportAddActivity.this, "Crime report added successfully", Toast.LENGTH_SHORT).show();
@@ -245,7 +335,14 @@ public class ReportAddActivity extends AppCompatActivity {
 
                 Toast.makeText(ReportAddActivity.this, "Failed to add crime report", Toast.LENGTH_SHORT).show();
             }
+
+             */
         }
+    }
+
+    public void finishActionProgressBar(){
+        progressBar.setVisibility(View.INVISIBLE);
+        reportSubmitBtn.setVisibility(View.VISIBLE);
     }
 
 }

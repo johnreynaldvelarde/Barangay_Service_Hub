@@ -124,7 +124,7 @@ public class Firebase_Connect {
     // -- MODULE --
 
     // CRIME REPORT MODULE / add a crime report
-    public boolean addCrimeReport(String userID, String title, String location, String comment){
+    public boolean addCrimeReport(String userID, String title, String location, String comment, String crimeImageURL){
         try{
 
             Date dateNow = new Date();
@@ -135,7 +135,7 @@ public class Firebase_Connect {
 
             String reportId = mDatabase.child("Crime_Report").push().getKey();
 
-            Add_Crime_Report add_report = new Add_Crime_Report(userID, title, location, comment, formattedDate, 0);
+            Add_Crime_Report add_report = new Add_Crime_Report(userID, title, location, comment, formattedDate, crimeImageURL, 0);
 
             mDatabase.child("Crime_Report").child(reportId).setValue(add_report);
 
