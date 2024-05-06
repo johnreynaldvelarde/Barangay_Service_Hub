@@ -3,6 +3,7 @@ package com.example.barangayservicehub;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.TextWatcher;
@@ -10,6 +11,8 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -32,7 +35,9 @@ public class LoginActivity extends AppCompatActivity {
     EditText username, password;
     TextInputLayout loginlayoutUsername;
     TextInputLayout loginLayoutPassword;
-    Button btnLogin;
+    ProgressBar progressBar;
+    FrameLayout btnLogin;
+    TextView loadTextBtn;
 
     Firebase_Connect connect;
 
@@ -46,10 +51,17 @@ public class LoginActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.bringToFront();
+
         btnLogin = findViewById(R.id.btnLogin);
+        loadTextBtn = findViewById(R.id.textLoginLoadBtn);
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                loadTextBtn.setVisibility(View.INVISIBLE);
                 nextLaunchHome();
             }
         });
@@ -164,38 +176,89 @@ public class LoginActivity extends AppCompatActivity {
 
 
                             if(accountTypeFromDB == 0){
+
                                 intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra(EXTRA_MESSAGE, nameFromDB);
                             }
                             else{
+
                                 intent = new Intent(LoginActivity.this, MainActivityAdmin.class);
                             }
 
                             if(intent != null){
-                                startActivity(intent);
+
+                                Intent finalIntent = intent;
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        startActivity(finalIntent);
+                                        progressBar.setVisibility(View.INVISIBLE);
+                                        loadTextBtn.setVisibility(View.VISIBLE);
+
+                                    }
+                                }, 1000);
                             }
                             return;
                         } else {
                             loginLayoutPassword.setError("Invalid Password");
                             password.requestFocus();
+
+                            progressBar.setVisibility(View.INVISIBLE);
+                            loadTextBtn.setVisibility(View.VISIBLE);
                         }
+
                     }
                 } else {
                     // User does not exist
                     loginlayoutUsername.setError("User does not exist");
                     username.requestFocus();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+                    loadTextBtn.setVisibility(View.VISIBLE);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle error
+
             }
         });
     }
 
     public void nextLaunchHome(){
-       checkCredentials();
+
+        username = findViewById(R.id.login_username);
+        password = findViewById(R.id.login_password);
+
+        String usernameText = username.getText().toString();
+        String passwordText = password.getText().toString();
+
+        if(usernameText.isEmpty()){
+            checkCredentials();
+            progressBar.setVisibility(View.INVISIBLE);
+            loadTextBtn.setVisibility(View.VISIBLE);
+        }
+        else if (passwordText.isEmpty()){
+            checkCredentials();
+            progressBar.setVisibility(View.INVISIBLE);
+            loadTextBtn.setVisibility(View.VISIBLE);
+        }
+        else {
+            checkCredentials();
+            /*
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    checkCredentials();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    loadTextBtn.setVisibility(View.VISIBLE);
+
+                }
+            }, 1000);
+
+             */
+        }
     }
     public void nextLaunchRegister(){
         Intent intent = new Intent(this, RegisterActivity.class);

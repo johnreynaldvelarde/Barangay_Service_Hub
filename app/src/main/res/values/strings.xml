@@ -26,4 +26,7 @@
     <string name="close_nav">Close Navigation Drawer</string>
     <string name="enter_your_username">Enter your username</string>
     <string name="submit">Submit</string>
+    <string name="title">Title</string>
+    <string name="_00_00_0000">00/ 00 / 0000</string>
+    <string name="select_camera_n_or_select_gallery">Select Camera \n or Select Gallery</string>
 </resources>

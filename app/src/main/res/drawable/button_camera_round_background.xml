@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- rounded_button_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Circular background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/background_1"/>
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+    <!-- Image -->
+    <item android:drawable="@drawable/take_icon_256"
+        android:gravity="center" android:width="60dp" android:height="60dp" />
+
+</layer-list>
