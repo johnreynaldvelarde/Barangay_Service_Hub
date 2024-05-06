@@ -21,11 +21,13 @@ public class ReportAddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report_add);
 
         ImageView btnBack = findViewById(R.id.btnBackArrow);
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
+
     }
 }

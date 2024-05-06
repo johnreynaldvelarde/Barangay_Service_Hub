@@ -116,4 +116,22 @@ public class Firebase_Connect {
         void onEmailCheckResult(boolean exists);
         void onEmailCheckError(DatabaseError error);
     }
+
+
+    // -- MODULE --
+
+    // CRIME REPORT MODULE
+    public boolean addCrimeReport(){
+        try{
+            String reportId = mDatabase.child("Crime_Report").push().getKey();
+            //User_Account register = new User_Account(name, email, password, account_type);
+            //mDatabase.child("Crime_Report").child(reportId).setValue(register);
+
+            return  true;
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return  false;
+        }
+    }
 }

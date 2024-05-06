@@ -25,4 +25,5 @@
     <string name="open_nav">Open Navigation Drawer</string>
     <string name="close_nav">Close Navigation Drawer</string>
     <string name="enter_your_username">Enter your username</string>
+    <string name="submit">Submit</string>
 </resources>
