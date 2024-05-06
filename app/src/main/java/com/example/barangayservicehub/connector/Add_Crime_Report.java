@@ -1,14 +1,18 @@
 package com.example.barangayservicehub.connector;
 
-public class Add_Crime_Report {
-    private String userId, title, location, comment, date;
+import java.util.Date;
 
-    public Add_Crime_Report(String userId, String title, String location, String comment, String date) {
+public class Add_Crime_Report {
+    private String userId, title, location, comment, dateAdded;
+    private int reportStatus;
+
+    public Add_Crime_Report(String userId, String title, String location, String comment, String dateAdded, int reportStatus) {
         this.userId = userId;
         this.title = title;
         this.location = location;
         this.comment = comment;
-        this.date = date;
+        this.dateAdded = dateAdded;
+        this.reportStatus = reportStatus;
     }
 
     public String getUserId() {
@@ -43,11 +47,19 @@ public class Add_Crime_Report {
         this.comment = comment;
     }
 
-    public String getDate() {
-        return date;
+    public String getDateAdded() {
+        return dateAdded;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDateAdded(String dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public int getReportStatus() {
+        return reportStatus;
+    }
+
+    public void setReportStatus(int reportStatus) {
+        this.reportStatus = reportStatus;
     }
 }

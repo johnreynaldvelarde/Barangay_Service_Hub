@@ -1,6 +1,8 @@
 package com.example.barangayservicehub;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -168,6 +170,15 @@ public class LoginActivity extends AppCompatActivity {
                             // Password matches
                             loginlayoutUsername.setError(null);
                             Intent intent = null;
+
+                            // Get the userID
+                            String userID = userSnapshot.getKey();
+
+                            // Store the userID in SharedPreferences
+                            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            editor.putString("userID", userID);
+                            editor.apply();
 
                             // Pass user data if needed
                             String nameFromDB = userSnapshot.child("name").getValue(String.class);

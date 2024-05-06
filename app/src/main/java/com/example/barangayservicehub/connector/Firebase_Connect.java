@@ -9,6 +9,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Firebase_Connect {
 
     private final DatabaseReference mDatabase;
@@ -120,12 +123,22 @@ public class Firebase_Connect {
 
     // -- MODULE --
 
-    // CRIME REPORT MODULE
-    public boolean addCrimeReport(String userID, String title, String location, String comment, String getDate){
+    // CRIME REPORT MODULE / add a crime report
+    public boolean addCrimeReport(String userID, String title, String location, String comment){
         try{
+
+            Date dateNow = new Date();
+
+            // Format the date and time
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formattedDate = dateFormat.format(dateNow);
+
             String reportId = mDatabase.child("Crime_Report").push().getKey();
-            Add_Crime_Report add_report = new Add_Crime_Report(userID, title, location, comment, getDate);
+
+            Add_Crime_Report add_report = new Add_Crime_Report(userID, title, location, comment, formattedDate, 0);
+
             mDatabase.child("Crime_Report").child(reportId).setValue(add_report);
+
             return  true;
         }
         catch (Exception e) {
@@ -133,4 +146,7 @@ public class Firebase_Connect {
             return  false;
         }
     }
+
+    // show a crime report in recycle view
+
 }

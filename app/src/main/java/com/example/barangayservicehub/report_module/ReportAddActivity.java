@@ -1,7 +1,9 @@
 package com.example.barangayservicehub.report_module;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
@@ -27,6 +29,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.connector.Firebase_Connect;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -229,8 +233,18 @@ public class ReportAddActivity extends AppCompatActivity {
             layoutComment.setError("* Fill in the blank");
         }
         else {
-            //boolean result = connect.addCrimeReport()
 
+            SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+            String userID = sharedPreferences.getString("userID", "");
+
+            boolean result = connect.addCrimeReport( userID, titleText, locationText, commentText);
+            if (result) {
+                Toast.makeText(ReportAddActivity.this, "Crime report added successfully", Toast.LENGTH_SHORT).show();
+                finish();
+            } else {
+
+                Toast.makeText(ReportAddActivity.this, "Failed to add crime report", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
