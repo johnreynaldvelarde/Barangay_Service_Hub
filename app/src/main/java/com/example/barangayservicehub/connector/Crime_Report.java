@@ -1,12 +1,10 @@
 package com.example.barangayservicehub.connector;
 
-import java.util.Date;
-
-public class Add_Crime_Report {
+public class Crime_Report {
     private String userId, title, location, comment, dateAdded, crimeImageURL;
     private int reportStatus;
 
-    public Add_Crime_Report(String userId, String title, String location, String comment, String dateAdded, String crimeImageURL, int reportStatus) {
+    public Crime_Report(String userId, String title, String location, String comment, String dateAdded, String crimeImageURL, int reportStatus) {
         this.userId = userId;
         this.title = title;
         this.location = location;

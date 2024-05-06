@@ -56,6 +56,11 @@
                 app:cardCornerRadius="30dp"
                 app:cardElevation="5dp">
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/listCrimeReportPending"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
