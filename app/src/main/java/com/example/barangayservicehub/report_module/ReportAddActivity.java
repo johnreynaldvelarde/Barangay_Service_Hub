@@ -29,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.connector.Firebase_Connect;
@@ -60,6 +61,7 @@ public class ReportAddActivity extends AppCompatActivity {
     ImageButton btnCameraGallery;
     ImageView btnBack, preview_Image;
     TextView viewDate, title, location, comment, reportSubmitBtn;
+
 
     ProgressBar progressBar;
 
