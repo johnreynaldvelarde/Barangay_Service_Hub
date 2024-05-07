@@ -20,6 +20,7 @@ import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.adapter.CrimeReportAdapter;
 import com.example.barangayservicehub.connector.Crime_Report;
 import com.example.barangayservicehub.connector.MyAdapter;
+import com.example.barangayservicehub.connector.User;
 import com.example.barangayservicehub.getter_class.Get_CrimeReport;
 import com.example.barangayservicehub.report_module.ReportAddActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,7 +36,7 @@ import java.util.ArrayList;
 public class CrimeReportFragment extends Fragment {
 
     RecyclerView recyclerView;
-    ArrayList<Get_CrimeReport> list;
+    ArrayList<User> list;
     DatabaseReference databaseReference;
     CrimeReportAdapter adapter;
 
@@ -61,7 +62,7 @@ public class CrimeReportFragment extends Fragment {
 
 
         recyclerView = view.findViewById(R.id.recycleViewReport);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Crime_Report");
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new CrimeReportAdapter(getContext() , list);
@@ -76,7 +77,7 @@ public class CrimeReportFragment extends Fragment {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
 
                     try{
-                        Get_CrimeReport report = dataSnapshot.getValue(Get_CrimeReport.class);
+                        User report = dataSnapshot.getValue(User.class);
                         if (report != null) {
                             list.add(report);
                         }

@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class NewsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<Get_CrimeReport> list;
+    ArrayList<User> list;
     DatabaseReference databaseReference;
     CrimeReportAdapter adapter;
 
@@ -54,7 +54,7 @@ public class NewsActivity extends AppCompatActivity {
 
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Crime_Report");
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         recyclerView = findViewById(R.id.recycleViewNews);
         list = new ArrayList<>();
@@ -70,7 +70,7 @@ public class NewsActivity extends AppCompatActivity {
                 list.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     try {
-                        Get_CrimeReport report = dataSnapshot.getValue(Get_CrimeReport.class);
+                        User report = dataSnapshot.getValue(User.class);
                         if (report != null) {
                             list.add(report);
                         }

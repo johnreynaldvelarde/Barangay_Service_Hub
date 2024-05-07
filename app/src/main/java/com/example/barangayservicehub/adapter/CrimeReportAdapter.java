@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barangayservicehub.R;
+import com.example.barangayservicehub.connector.User;
 import com.example.barangayservicehub.getter_class.Get_CrimeReport;
 
 import java.util.ArrayList;
@@ -18,9 +19,9 @@ import java.util.ArrayList;
 public class CrimeReportAdapter extends RecyclerView.Adapter<CrimeReportAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<Get_CrimeReport> list;
+    ArrayList<User> list;
 
-    public CrimeReportAdapter(Context context, ArrayList<Get_CrimeReport> list) {
+    public CrimeReportAdapter(Context context, ArrayList<User> list) {
         this.context = context;
         this.list = list;
     }
@@ -35,9 +36,10 @@ public class CrimeReportAdapter extends RecyclerView.Adapter<CrimeReportAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-        Get_CrimeReport report = list.get(position);
-        holder.title.setText(report.getGetTitle());
-        holder.recordTime.setText(report.getGetDate());
+        //Get_CrimeReport reportCrime = list.get(position);
+        User user = list.get(position);
+        holder.title.setText(user.getName());
+        holder.recordTime.setText(user.getEmail());
     }
 
     @Override
@@ -48,7 +50,7 @@ public class CrimeReportAdapter extends RecyclerView.Adapter<CrimeReportAdapter.
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView title, recordTime;
+        TextView title, location, comment, recordTime, imageReportURL;
         ImageView defaultImage;
 
         public MyViewHolder(@NonNull View itemView) {
