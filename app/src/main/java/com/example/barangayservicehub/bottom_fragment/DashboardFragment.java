@@ -23,6 +23,7 @@ import com.example.barangayservicehub.MainActivity;
 import com.example.barangayservicehub.NotificationActivity;
 import com.example.barangayservicehub.ProfileActivity;
 import com.example.barangayservicehub.R;
+import com.example.barangayservicehub.nav_fargment.NewsActivity;
 import com.google.android.material.navigation.NavigationView;
 
 public class DashboardFragment extends Fragment {
@@ -36,6 +37,8 @@ public class DashboardFragment extends Fragment {
     private boolean isNavigationViewVisible = false;
 
     private DrawerToggleListener drawerToggleListener;
+
+    private TextView btnViewAll;
 
     public class Constants {
         public static final String USERNAME_EXTRA = "USERNAME_EXTRA";
@@ -116,6 +119,7 @@ public class DashboardFragment extends Fragment {
 
         ImageView profileImage = view.findViewById(R.id.mainProfile);
         ImageView btnNotify = view.findViewById(R.id.btnNotification);
+        btnViewAll = view.findViewById(R.id.btnViewall);
 
         // click profile
         profileImage.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +136,16 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), NotificationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // click view all --> news activity
+
+        btnViewAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NewsActivity.class);
                 startActivity(intent);
             }
         });

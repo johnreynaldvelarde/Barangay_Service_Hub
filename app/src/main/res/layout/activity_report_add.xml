@@ -108,7 +108,7 @@
                 app:boxStrokeColor="@color/black_blue"
                 app:boxStrokeWidth="1dp"
                 app:counterEnabled="true"
-                app:counterMaxLength="100"
+                app:counterMaxLength="50"
                 app:endIconMode="clear_text"
                 app:endIconTint="@color/grey"
                 app:hintTextAppearance="@style/HintTextAppearance"

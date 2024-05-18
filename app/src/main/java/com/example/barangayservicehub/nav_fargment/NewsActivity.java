@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class NewsActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    ArrayList<User> list;
+    //ArrayList<Get_CrimeReport> list;
     DatabaseReference databaseReference;
     CrimeReportAdapter adapter;
 
@@ -52,7 +52,7 @@ public class NewsActivity extends AppCompatActivity {
             }
         });
 
-
+        /*
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -70,7 +70,7 @@ public class NewsActivity extends AppCompatActivity {
                 list.clear();
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                     try {
-                        User report = dataSnapshot.getValue(User.class);
+                        Get_CrimeReport report = dataSnapshot.getValue(Get_CrimeReport.class);
                         if (report != null) {
                             list.add(report);
                         }
@@ -86,6 +86,8 @@ public class NewsActivity extends AppCompatActivity {
                 Toast.makeText( NewsActivity.this, "User object is null", Toast.LENGTH_SHORT).show();
             }
         });
+
+         */
 
 
     }

@@ -16,24 +16,26 @@
 
         <ImageView
             android:id="@+id/imageReport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="180px"
+            android:layout_height="180px"
             android:layout_marginStart="16dp"
-            android:src="@drawable/btn_1"
+            android:src="@drawable/barangay_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/black_blue" />
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:id="@+id/listTextTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="220dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:fontFamily="@font/poppins_bold"
             android:text="Asong gumagala...."
             android:textColor="@color/grey_brown"
             android:textSize="15sp"
+            android:ellipsize="end"
+            android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageReport"
             app:layout_constraintTop_toTopOf="parent" />

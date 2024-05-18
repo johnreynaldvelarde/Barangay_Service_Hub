@@ -1,6 +1,8 @@
 package com.example.barangayservicehub.bottom_fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -29,16 +31,22 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CrimeReportFragment extends Fragment {
 
     RecyclerView recyclerView;
-    ArrayList<User> list;
+    ArrayList<Get_CrimeReport> list;
     DatabaseReference databaseReference;
     CrimeReportAdapter adapter;
+
+
+
+    String reportID, userID, reportTitle, reportComment, reportDate, imageReportURL;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -60,15 +68,19 @@ public class CrimeReportFragment extends Fragment {
             }
         });
 
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        String userID = sharedPreferences.getString("userID", "");
 
         recyclerView = view.findViewById(R.id.recycleViewReport);
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Crime_Report");
         list = new ArrayList<>();
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new CrimeReportAdapter(getContext() , list);
         recyclerView.setAdapter(adapter);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        Query query = databaseReference.orderByChild("userId").equalTo(userID).limitToLast(100);
+
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -77,16 +89,17 @@ public class CrimeReportFragment extends Fragment {
                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
 
                     try{
-                        User report = dataSnapshot.getValue(User.class);
-                        if (report != null) {
+
+                        Get_CrimeReport report = dataSnapshot.getValue(Get_CrimeReport.class);
+                        if (report != null && report.getReportStatus() == 0) {
                             list.add(report);
                         }
                     }
                     catch (DatabaseException e) {
                         Log.e("NewsActivity", "Error parsing User object: " + e.getMessage());
                     }
-
                 }
+                Collections.reverse(list);
                 adapter.notifyDataSetChanged();
             }
             @Override
