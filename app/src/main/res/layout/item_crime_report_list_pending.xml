@@ -6,8 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="5dp"
     app:cardCornerRadius="8dp"
-    android:layout_margin="5dp"
-    >
+    android:layout_margin="5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,8 +15,8 @@
 
         <ImageView
             android:id="@+id/imageReport"
-            android:layout_width="180px"
-            android:layout_height="180px"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
             android:layout_marginStart="16dp"
             android:src="@drawable/barangay_logo"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -2,32 +2,22 @@ package com.example.barangayservicehub.getter_class;
 
 public class Get_Stats {
 
-    private String population, household, establishment, landmark;
+    private String statsName, statsNumber;
 
     public Get_Stats(){
 
     }
 
-    public Get_Stats(String population, String household, String establishment, String landmark) {
-        this.population = population;
-        this.household = household;
-        this.establishment = establishment;
-        this.landmark = landmark;
+    public Get_Stats(String statsName, String statsNumber) {
+        this.statsName = statsName;
+        this.statsNumber = statsNumber;
     }
 
-    public String getPopulation() {
-        return population;
+    public String getStatsName() {
+        return statsName;
     }
 
-    public String getHousehold() {
-        return household;
-    }
-
-    public String getEstablishment() {
-        return establishment;
-    }
-
-    public String getLandmark() {
-        return landmark;
+    public String getStatsNumber() {
+        return statsNumber;
     }
 }
