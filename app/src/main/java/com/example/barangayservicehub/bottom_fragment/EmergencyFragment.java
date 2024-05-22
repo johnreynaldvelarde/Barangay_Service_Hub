@@ -2,65 +2,105 @@ package com.example.barangayservicehub.bottom_fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.barangayservicehub.R;
+import com.example.barangayservicehub.adapter.CallAdapter;
+import com.example.barangayservicehub.adapter.ServicesAdapter;
+import com.example.barangayservicehub.getter_class.Get_Call;
+import com.example.barangayservicehub.getter_class.Get_Services;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EmergencyFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class EmergencyFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public EmergencyFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EmergencyFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EmergencyFragment newInstance(String param1, String param2) {
-        EmergencyFragment fragment = new EmergencyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    private RecyclerView recyclerCall;
+    private ArrayList<Get_Call> listCall;
+    private DatabaseReference databaseReference;
+    private CallAdapter callAdapter;
+    private ProgressBar progressBarCall;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_emergency, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // for call
+        recyclerCall = view.findViewById(R.id.recycleViewCall);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Barangay_Call_Number");
+        listCall = new ArrayList<>();
+        recyclerCall.setLayoutManager(new LinearLayoutManager(getContext()));
+        callAdapter =  new CallAdapter(getContext() , listCall);
+        recyclerCall.setAdapter(callAdapter);
+        progressBarCall = view.findViewById(R.id.progressBarCall);
+
+        progressBarCall.setVisibility(View.VISIBLE);
+
+        Query query = databaseReference.orderByChild("availableStatus").equalTo("0");
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                listCall.clear();
+
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()){
+                    try{
+
+                        Get_Call call = dataSnapshot.getValue(Get_Call.class);
+                        listCall.add(call);
+
+                    }
+                    catch (DatabaseException e){
+                        Log.e("Barangay Emergency", "Error parsing User object: " + e.getMessage());
+                    }
+                }
+                //Collections.reverse(listNews);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        callAdapter.notifyDataSetChanged();
+                        progressBarCall.setVisibility(View.GONE);
+                    }
+                }, 500);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+                String errorMessage = "Database error: " + error.getMessage();
+                Log.e("EmergencyFragment", errorMessage);
+                Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 }

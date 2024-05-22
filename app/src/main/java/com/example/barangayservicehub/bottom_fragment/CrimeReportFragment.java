@@ -11,10 +11,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.barangayservicehub.NotificationActivity;
@@ -39,10 +41,11 @@ import java.util.Collections;
 
 public class CrimeReportFragment extends Fragment {
 
-    RecyclerView recyclerView;
-    ArrayList<Get_CrimeReport> list;
-    DatabaseReference databaseReference;
-    CrimeReportAdapter adapter;
+    private RecyclerView recyclerView;
+    private ArrayList<Get_CrimeReport> list;
+    private DatabaseReference databaseReference;
+    private CrimeReportAdapter adapter;
+    private ProgressBar progressBarCrime;
 
 
 
@@ -77,6 +80,9 @@ public class CrimeReportFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         adapter = new CrimeReportAdapter(getContext() , list);
         recyclerView.setAdapter(adapter);
+        progressBarCrime = view.findViewById(R.id.progressBarCrime);
+
+        progressBarCrime.setVisibility(View.VISIBLE);
 
         Query query = databaseReference.orderByChild("userId").equalTo(userID).limitToLast(100);
 
@@ -100,7 +106,14 @@ public class CrimeReportFragment extends Fragment {
                     }
                 }
                 Collections.reverse(list);
-                adapter.notifyDataSetChanged();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        adapter.notifyDataSetChanged();
+                        progressBarCrime.setVisibility(View.GONE);
+                    }
+                },500);
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
