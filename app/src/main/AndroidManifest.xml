@@ -28,7 +28,7 @@
             android:name=".module.NewsViewActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivityAdmin"
+            android:name=".admin_module.MainActivityAdmin"
             android:exported="false" />
         <activity
             android:name=".MainActivity4"
