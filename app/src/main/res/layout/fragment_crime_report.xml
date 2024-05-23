@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_1"
+    android:background="@color/background_3"
     tools:context=".bottom_fragment.CrimeReportFragment">
 
     <!-- TODO: Update blank fragment layout -->
