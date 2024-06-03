@@ -33,6 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.registration.MESSAGE";
+    public static final String SHARED_PREFS = "sharedPrefs";
 
     EditText username, password;
     TextInputLayout loginlayoutUsername;
@@ -188,6 +189,12 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(accountTypeFromDB == 0){
 
+                                SharedPreferences sharedPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+                                SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+
+                                editor1.putString("name", "true");
+                                editor1.apply();
+
                                 intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra(EXTRA_MESSAGE, nameFromDB);
                             }
@@ -274,5 +281,13 @@ public class LoginActivity extends AppCompatActivity {
     public void nextLaunchRegister(){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
+    }
+
+    public void RememberMe(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
+        String check = sharedPreferences.getString("name", "");
+        if(check.equals("true")){
+            finish();
+        }
     }
 }

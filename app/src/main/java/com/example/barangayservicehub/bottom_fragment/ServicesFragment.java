@@ -1,6 +1,5 @@
 package com.example.barangayservicehub.bottom_fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,19 +13,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.barangayservicehub.ProfileActivity;
 import com.example.barangayservicehub.R;
-import com.example.barangayservicehub.adapter.CrimeReportAdapter;
-import com.example.barangayservicehub.adapter.NewsAdapter;
 import com.example.barangayservicehub.adapter.ServicesAdapter;
-import com.example.barangayservicehub.getter_class.Get_CrimeReport;
-import com.example.barangayservicehub.getter_class.Get_News;
 import com.example.barangayservicehub.getter_class.Get_Services;
-import com.example.barangayservicehub.services_module.AgricultureActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
@@ -36,7 +28,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class ServicesFragment extends Fragment {
 
@@ -50,7 +41,7 @@ public class ServicesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_services, container, false);
+        return inflater.inflate(R.layout.fragment_programs, container, false);
     }
 
     @Override

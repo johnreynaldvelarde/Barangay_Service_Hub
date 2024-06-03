@@ -157,7 +157,7 @@
               android:layout_height="wrap_content"
               android:layout_weight="1"
               android:fontFamily="@font/poppins_bold"
-              android:text="Add Services"
+              android:text="Add Program"
               android:textAlignment="center"
               android:textColor="@color/background_2"
               android:textSize="16sp" />
@@ -241,7 +241,7 @@
               android:layout_height="wrap_content"
               android:layout_weight="1"
               android:fontFamily="@font/poppins_bold"
-              android:text="Add Request"
+              android:text="Add Service"
               android:textAlignment="center"
               android:textColor="@color/background_2"
               android:textSize="16sp" />

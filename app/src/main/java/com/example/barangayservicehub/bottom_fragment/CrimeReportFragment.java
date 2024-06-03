@@ -19,12 +19,8 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.barangayservicehub.NotificationActivity;
 import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.adapter.CrimeReportAdapter;
-import com.example.barangayservicehub.connector.Crime_Report;
-import com.example.barangayservicehub.connector.MyAdapter;
-import com.example.barangayservicehub.connector.User;
 import com.example.barangayservicehub.getter_class.Get_CrimeReport;
 import com.example.barangayservicehub.report_module.ReportAddActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -55,7 +51,7 @@ public class CrimeReportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_crime_report, container, false);
+        return inflater.inflate(R.layout.fragment_blotter_report, container, false);
     }
 
     @Override
