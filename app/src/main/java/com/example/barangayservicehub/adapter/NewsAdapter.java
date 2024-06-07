@@ -60,6 +60,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
                 // Start NewsViewActivity and pass necessary data
                 Intent intent = new Intent(v.getContext(), NewsViewActivity.class);
                 intent.putExtra("NEWS_TITLE_EXTRA", news.getNewsTitle()); // Example: Passing news title
+                intent.putExtra("NEWS_DATE_EXTRA", news.getNewsDateAdded());
+                intent.putExtra("NEWS_ARTICLE_EXTRA", news.getNewsArticle());
                 v.getContext().startActivity(intent);
             }
         });

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".module.ReportViewActivity">
+    tools:context=".module.ProgramsViewActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="-20dp"
             android:fontFamily="@font/poppins_bold"
-            android:text="Incident Report Details"
+            android:text="@string/program_details"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -73,19 +73,18 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/viewReportTitle"
-                    android:layout_width="match_parent"
+                    android:id="@+id/viewProgramTitle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="10dp"
-                    android:layout_marginEnd="32dp"
                     android:fontFamily="@font/poppins_bold"
                     android:text="Program Title"
                     android:textColor="@color/grey_brown"
                     android:textSize="20sp" />
 
                 <TextView
-                    android:id="@+id/viewReportDate"
+                    android:id="@+id/viewProgramDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -96,7 +95,7 @@
                     android:textSize="13sp" />
 
                 <ImageView
-                    android:id="@+id/viewReportImage"
+                    android:id="@+id/imageView13"
                     android:layout_width="320dp"
                     android:layout_height="200dp"
                     android:layout_gravity="center"
@@ -104,7 +103,7 @@
                     app:srcCompat="@drawable/blank_image" />
 
                 <TextView
-                    android:id="@+id/viewReportComment"
+                    android:id="@+id/viewProgramArticle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"

@@ -14,9 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.getter_class.Get_Call;
-import com.example.barangayservicehub.getter_class.Get_Services;
-import com.example.barangayservicehub.module.EmergencyViewActivity;
-import com.example.barangayservicehub.module.ServicesViewActivity;
 
 import java.util.ArrayList;
 

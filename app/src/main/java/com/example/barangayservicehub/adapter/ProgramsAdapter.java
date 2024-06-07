@@ -12,19 +12,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barangayservicehub.R;
-import com.example.barangayservicehub.getter_class.Get_News;
-import com.example.barangayservicehub.getter_class.Get_Services;
-import com.example.barangayservicehub.module.NewsViewActivity;
-import com.example.barangayservicehub.module.ServicesViewActivity;
+import com.example.barangayservicehub.getter_class.Get_Programs;
+import com.example.barangayservicehub.module.ProgramsViewActivity;
 
 import java.util.ArrayList;
 
-public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.ServicesHolder> {
+public class ProgramsAdapter extends RecyclerView.Adapter<ProgramsAdapter.ServicesHolder> {
 
     Context context;
-    ArrayList<Get_Services> list;
+    ArrayList<Get_Programs> list;
 
-    public ServicesAdapter(Context context, ArrayList<Get_Services> listServices) {
+    public ProgramsAdapter(Context context, ArrayList<Get_Programs> listServices) {
         this.context = context;
         this.list = listServices;
     }
@@ -33,22 +31,23 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.Servic
     @Override
     public ServicesHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.item_services,parent, false);
-        return new ServicesAdapter.ServicesHolder(v);
+        return new ProgramsAdapter.ServicesHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ServicesHolder holder, int position) {
 
-        Get_Services services = list.get(position);
-        holder.serviceName.setText(services.getServiceName());
-        holder.serviceDescription.setText(services.getServiceDescription());
+        Get_Programs programs = list.get(position);
+        holder.programName.setText(programs.getServiceName());
+        holder.programDescription.setText(programs.getServiceDescription());
 
 
         holder.btnServiceView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ServicesViewActivity.class);
-                //intent.putExtra("NEWS_TITLE_EXTRA", news.getNewsTitle()); // Example: Passing news title
+                Intent intent = new Intent(v.getContext(), ProgramsViewActivity.class);
+                intent.putExtra("PROGRAMS_TITLE", programs.getServiceName());
+                intent.putExtra("PROGRAMS_DESCRIPTION", programs.getServiceDescription());
                 v.getContext().startActivity(intent);
             }
         });
@@ -62,15 +61,14 @@ public class ServicesAdapter extends RecyclerView.Adapter<ServicesAdapter.Servic
 
     public static class ServicesHolder extends RecyclerView.ViewHolder {
 
-        TextView serviceName,  serviceDescription;
+        TextView programName,  programDescription;
         ImageButton btnServiceView;
 
         public ServicesHolder(@NonNull View itemView) {
             super(itemView);
-            serviceName = itemView.findViewById(R.id.listServicesName);
-            serviceDescription = itemView.findViewById(R.id.listServicesDescription);
+            programName = itemView.findViewById(R.id.listServicesName);
+            programDescription = itemView.findViewById(R.id.listServicesDescription);
             btnServiceView = itemView.findViewById(R.id.btnServicesView);
-
         }
     }
 }

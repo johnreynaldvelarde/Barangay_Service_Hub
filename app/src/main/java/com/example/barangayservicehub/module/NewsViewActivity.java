@@ -13,8 +13,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.barangayservicehub.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class NewsViewActivity extends AppCompatActivity {
 
+    TextView viewNewsTitle, viewNewsArticle, viewNewsDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +27,25 @@ public class NewsViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_news_view);
 
         String newsTitle = getIntent().getStringExtra("NEWS_TITLE_EXTRA");
-        //TextView newsTitleTextView = findViewById(R.id.newsTitle);
-        //newsTitleTextView.setText(newsTitle);
+        String newsDate = getIntent().getStringExtra("NEWS_DATE_EXTRA");
+        String newsArticle = getIntent().getStringExtra("NEWS_ARTICLE_EXTRA");
+
+        viewNewsTitle = findViewById(R.id.viewNewsTitle);
+        viewNewsDate = findViewById(R.id.viewNewsDate);
+        viewNewsArticle = findViewById(R.id.viewNewsArticle);
+
+        viewNewsTitle.setText(newsTitle);
+        viewNewsArticle.setText(newsArticle);
+
+        try {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("MMMM d, yyyy 'at' h:mm a");
+            Date date = inputFormat.parse(newsDate);
+            String formattedDate = outputFormat.format(date);
+            viewNewsDate.setText(formattedDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         ImageView btnBack = findViewById(R.id.btnBackArrow);
         btnBack.setOnClickListener(new View.OnClickListener() {

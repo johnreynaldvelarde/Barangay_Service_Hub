@@ -17,8 +17,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.barangayservicehub.R;
-import com.example.barangayservicehub.adapter.ServicesAdapter;
-import com.example.barangayservicehub.getter_class.Get_Services;
+import com.example.barangayservicehub.adapter.ProgramsAdapter;
+import com.example.barangayservicehub.getter_class.Get_Programs;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
@@ -32,9 +32,9 @@ import java.util.ArrayList;
 public class ServicesFragment extends Fragment {
 
     private RecyclerView recyclerService;
-    private ArrayList<Get_Services> listService;
+    private ArrayList<Get_Programs> listService;
     private DatabaseReference databaseReference;
-    private ServicesAdapter serviceAdapter;
+    private ProgramsAdapter serviceAdapter;
     private ProgressBar progressBarServices;
 
     @Override
@@ -53,7 +53,7 @@ public class ServicesFragment extends Fragment {
         databaseReference = FirebaseDatabase.getInstance().getReference("Barangay_Service");
         listService = new ArrayList<>();
         recyclerService.setLayoutManager(new LinearLayoutManager(getContext()));
-        serviceAdapter =  new ServicesAdapter(getContext() , listService);
+        serviceAdapter =  new ProgramsAdapter(getContext() , listService);
         recyclerService.setAdapter(serviceAdapter);
         progressBarServices = view.findViewById(R.id.progressBarServices);
 
@@ -70,7 +70,7 @@ public class ServicesFragment extends Fragment {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     try{
 
-                        Get_Services services = dataSnapshot.getValue(Get_Services.class);
+                        Get_Programs services = dataSnapshot.getValue(Get_Programs.class);
                         listService.add(services);
 
                     }

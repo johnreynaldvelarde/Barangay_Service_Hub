@@ -44,8 +44,7 @@ public class CrimeReportFragment extends Fragment {
     private ProgressBar progressBarCrime;
 
 
-
-    String reportID, userID, reportTitle, reportComment, reportDate, imageReportURL;
+    //String reportID, userID, reportTitle, reportComment, reportDate, imageReportURL;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,7 +97,7 @@ public class CrimeReportFragment extends Fragment {
                         }
                     }
                     catch (DatabaseException e) {
-                        Log.e("NewsActivity", "Error parsing User object: " + e.getMessage());
+                        Log.e("IncidentReportActivity", "Error parsing User object: " + e.getMessage());
                     }
                 }
                 Collections.reverse(list);

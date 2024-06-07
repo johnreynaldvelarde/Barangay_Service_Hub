@@ -32,4 +32,6 @@
     <string name="view_all">View all</string>
     <string name="administration_mode">Administration Mode</string>
     <string name="barangay_e_connect">Barangay E-Connect</string>
+    <string name="program_details">Program Details</string>
+    <string name="service_details">Service Details</string>
 </resources>

@@ -10,21 +10,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.barangayservicehub.R;
 
-public class ServicesViewActivity extends AppCompatActivity {
+public class ProgramsViewActivity extends AppCompatActivity {
 
-    TextView viewServicesTitle;
+    TextView viewProgramsTitle, viewProgramsDate, viewProgramsDescription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_services_view);
+        setContentView(R.layout.activity_programs_view);
 
-        viewServicesTitle = findViewById(R.id.viewServiceTitle);
+        viewProgramsTitle = findViewById(R.id.viewProgramTitle);
+        viewProgramsDescription = findViewById(R.id.viewProgramArticle);
 
-        String serviceTitle = getIntent().getStringExtra("SERVICES_TITLE");
+        String programTitle = getIntent().getStringExtra("PROGRAMS_TITLE");
+        String programDescription = getIntent().getStringExtra("PROGRAMS_DESCRIPTION");
 
-        viewServicesTitle.setText(serviceTitle);
+        viewProgramsTitle.setText(programTitle);
+        viewProgramsDescription.setText(programDescription);
 
         ImageView btnBack = findViewById(R.id.btnBackArrow);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +36,5 @@ public class ServicesViewActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 }

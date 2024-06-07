@@ -6,7 +6,7 @@ import com.google.firebase.database.IgnoreExtraProperties;
 public class Get_CrimeReport {
 
     //private String getReportID, getUserID, getTitle, getLocation, getComment, getDate, getReportImageURL;
-    private String title, dateAdded, crimeImageURL;
+    private String title, dateAdded, crimeImageURL, comment;
 
     private  int reportStatus;
 
@@ -14,10 +14,11 @@ public class Get_CrimeReport {
 
     }
 
-    public Get_CrimeReport(String title, String dateAdded, String crimeImageURL, int reportStatus) {
+    public Get_CrimeReport(String title, String dateAdded, String crimeImageURL, String comment, int reportStatus) {
         this.title = title;
         this.dateAdded = dateAdded;
         this.crimeImageURL = crimeImageURL;
+        this.comment = comment;
         this.reportStatus = reportStatus;
     }
 
@@ -31,6 +32,10 @@ public class Get_CrimeReport {
 
     public String getCrimeImageURL() {
         return crimeImageURL;
+    }
+
+    public String getComment() {
+        return comment;
     }
 
     public int getReportStatus() {

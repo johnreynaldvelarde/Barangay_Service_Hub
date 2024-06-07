@@ -1,10 +1,12 @@
 package com.example.barangayservicehub.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +17,8 @@ import com.bumptech.glide.Glide;
 import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.connector.User;
 import com.example.barangayservicehub.getter_class.Get_CrimeReport;
+import com.example.barangayservicehub.module.ReportViewActivity;
+import com.example.barangayservicehub.module.ServicesViewActivity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -63,15 +67,18 @@ public class CrimeReportAdapter extends RecyclerView.Adapter<CrimeReportAdapter.
                     .error(R.drawable.barangay_logo)
                     .into(holder.imageReport);
         }
-        /*
-        holder.reportID = report.getGetReportID();
-        holder.userID = report.getGetUserID();
-        holder.reportTitle = report.getGetTitle();
-        holder.reportComment = report.getGetComment();
-        holder.reportDate = report.getGetDate();
-        holder.imageReportURL = report.getGetReportImageURL();
 
-         */
+        holder.btnReportView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), ReportViewActivity.class);
+                intent.putExtra("REPORT_TITLE", report.getTitle());
+                intent.putExtra("REPORT_DATE", report.getDateAdded());
+                intent.putExtra("REPORT_IMAGE_URL", report.getCrimeImageURL());
+                intent.putExtra("REPORT_COMMENT", report.getComment());
+                v.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -85,6 +92,7 @@ public class CrimeReportAdapter extends RecyclerView.Adapter<CrimeReportAdapter.
         TextView title, dateAdded;
 
         ImageView imageReport;
+        ImageButton btnReportView;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +101,7 @@ public class CrimeReportAdapter extends RecyclerView.Adapter<CrimeReportAdapter.
             dateAdded = itemView.findViewById(R.id.listTextTime);
             imageReport = itemView.findViewById(R.id.imageReport);
             imageReport.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            btnReportView = itemView.findViewById(R.id.btnReportView);
         }
     }
 
@@ -127,5 +136,15 @@ public class CrimeReportAdapter extends RecyclerView.Adapter<CrimeReportAdapter.
         } else {
             return diff / DAY_MILLIS + " days ago";
         }
+
+        /*
+        holder.reportID = report.getGetReportID();
+        holder.userID = report.getGetUserID();
+        holder.reportTitle = report.getGetTitle();
+        holder.reportComment = report.getGetComment();
+        holder.reportDate = report.getGetDate();
+        holder.imageReportURL = report.getGetReportImageURL();
+
+         */
     }
 }

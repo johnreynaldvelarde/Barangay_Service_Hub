@@ -64,7 +64,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/raleway_bold"
-                android:text="Services for you"
+                android:text="Programs for you"
                 android:textColor="@color/grey_brown"
                 android:textSize="18sp" />
 

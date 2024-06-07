@@ -22,13 +22,13 @@
             android:name=".admin_module.MainActivityAdmin1"
             android:exported="false" />
         <activity
-            android:name=".module.RequestFileViewActivity"
+            android:name=".module.ServicesViewActivity"
             android:exported="false" />
         <activity
             android:name=".module.EmergencyViewActivity"
             android:exported="false" />
         <activity
-            android:name=".module.ServicesViewActivity"
+            android:name=".module.ProgramsViewActivity"
             android:exported="false" />
         <activity
             android:name=".module.ReportViewActivity"

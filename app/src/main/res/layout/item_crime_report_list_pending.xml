@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/imageReport"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_marginStart="16dp"
             android:src="@drawable/barangay_logo"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +55,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageButton
-            android:id="@+id/btnForward"
+            android:id="@+id/btnReportView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
