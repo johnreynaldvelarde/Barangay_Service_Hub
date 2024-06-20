@@ -11,6 +11,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Firebase_Connect {
 
@@ -122,7 +124,6 @@ public class Firebase_Connect {
 
 
     // -- MODULE --
-
     // CRIME REPORT MODULE / add a crime report
     public boolean addCrimeReport(String userID, String title, String location, String comment, String crimeImageURL){
         try{
@@ -148,5 +149,82 @@ public class Firebase_Connect {
     }
 
     // show a crime report in recycle view
+
+    // ADMIN MODULE
+
+    public boolean updateBarangayStats(int Population, int Household, int Establishment, int Landmark){
+        try {
+            DatabaseReference statsRef = mDatabase.child("Barangay_Stats");
+
+            statsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Map<String, Object> statsUpdates = new HashMap<>();
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        String key = snapshot.getKey();
+                        String statsName = snapshot.child("statsName").getValue(String.class);
+
+                        int currentStatsNumber = Integer.parseInt(snapshot.child("statsNumber").getValue(String.class));
+                        int updatedStatsNumber = currentStatsNumber;
+
+                        if ("Population".equals(statsName)) {
+                            updatedStatsNumber += Population;
+                        } else if ("Household".equals(statsName)) {
+                            updatedStatsNumber += Household;
+                        } else if ("Establishment".equals(statsName)) {
+                            updatedStatsNumber += Establishment;
+                        } else if ("Landmark".equals(statsName)) {
+                            updatedStatsNumber += Landmark;
+                        }
+
+                        statsUpdates.put(key + "/statsNumber", String.valueOf(updatedStatsNumber));
+                    }
+
+                    statsRef.updateChildren(statsUpdates);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Handle error
+                }
+            });
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
+
+    // Method to retrieve Barangay stats
+    public void getBarangayStats(final BarangayStatsCallback callback) {
+        DatabaseReference statsRef = mDatabase.child("Barangay_Stats");
+        statsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Map<String, String> stats = new HashMap<>();
+                for (DataSnapshot statSnapshot : dataSnapshot.getChildren()) {
+                    String statsName = statSnapshot.child("statsName").getValue(String.class);
+                    String statsNumber = statSnapshot.child("statsNumber").getValue(String.class);
+                    stats.put(statsName, statsNumber);
+                }
+                callback.onBarangayStatsResult(stats);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                callback.onBarangayStatsError(databaseError);
+            }
+        });
+    }
+
+    public interface BarangayStatsCallback {
+        void onBarangayStatsResult(Map<String, String> stats);
+        void onBarangayStatsError(DatabaseError error);
+    }
 
 }

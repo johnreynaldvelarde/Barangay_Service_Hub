@@ -131,7 +131,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Population"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number|numberSigned"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -179,7 +179,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Household"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number|numberSigned"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -228,7 +228,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Establishment"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number|numberSigned"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -277,7 +277,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Landmark"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number|numberSigned"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
