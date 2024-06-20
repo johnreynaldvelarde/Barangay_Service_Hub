@@ -148,6 +148,29 @@ public class Firebase_Connect {
         }
     }
 
+    // add User Request in Services
+    public boolean addServicesRequest(String userID, String name, int age, String address, String purpose, String serviceID ){
+        try {
+
+            Date dateNow = new Date();
+            // Format the date and time
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formattedDate = dateFormat.format(dateNow);
+
+            String requestID  = mDatabase.child("Services_Request").push().getKey();
+
+            Service_Request add_request = new Service_Request(userID, serviceID, name, address, formattedDate, purpose, age, 0, 0);
+
+            mDatabase.child("Services_Request").child(requestID).setValue(add_request);
+
+            return true;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     // show a crime report in recycle view
 
     // ADMIN MODULE

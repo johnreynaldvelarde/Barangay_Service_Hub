@@ -12,6 +12,8 @@
     <color name="background_5">#54A1CB</color>
     <color name="blue">#3AA3A5</color>
 
+    <color name="background_tunay">#FEF7FF</color>
+
     // logo color
     <color name="dark_blue">#033AA9</color>
     <color name="red">#D9251C</color>

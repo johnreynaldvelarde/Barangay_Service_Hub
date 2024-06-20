@@ -236,7 +236,6 @@
                             android:fontFamily="@font/poppins_regular"
                             android:textColor="@color/black"/>
 
-
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.constraintlayout.widget.ConstraintLayout

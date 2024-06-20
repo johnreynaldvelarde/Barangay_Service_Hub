@@ -2,27 +2,27 @@ package com.example.barangayservicehub.getter_class;
 
 public class Get_RequestFile {
 
-    private String fileName, fileDescription, fileURL;
+    private String id, fileName, availableStatus;
 
     public Get_RequestFile(){
 
     }
 
-    public Get_RequestFile(String fileName, String fileDescription, String fileURL) {
+    public Get_RequestFile(String id, String fileName, String availableStatus) {
+        this.id = id;
         this.fileName = fileName;
-        this.fileDescription = fileDescription;
-        this.fileURL = fileURL;
+        this.availableStatus = availableStatus;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getFileName() {
         return fileName;
     }
 
-    public String getFileDescription() {
-        return fileDescription;
-    }
-
-    public String getFileURL() {
-        return fileURL;
+    public String getAvailableStatus() {
+        return availableStatus;
     }
 }

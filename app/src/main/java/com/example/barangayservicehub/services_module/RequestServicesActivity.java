@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.connector.Firebase_Connect;
+import com.example.barangayservicehub.report_module.ReportAddActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -101,7 +103,7 @@ public class RequestServicesActivity extends AppCompatActivity {
         requestPurpose = findViewById(R.id.selectPurpose);
 
         String name = requestName.getText().toString();
-        String age = requestAge.getText().toString().trim();
+        String ageText = requestAge.getText().toString().trim();
         String address = requestAddress.getText().toString();
         String purpose = requestPurpose.getText().toString();
 
@@ -159,23 +161,53 @@ public class RequestServicesActivity extends AppCompatActivity {
         if(name.isEmpty()){
             finishActionProgressBar();
             layoutRequestName.setError("* Fill in the blank");
-        }else if(age.isEmpty()){
+        }else if(ageText.isEmpty()){
             finishActionProgressBar();
             layoutRequestAge.setError("* Fill in the blank");
         } else if (address.isEmpty()) {
             finishActionProgressBar();
             layoutRequestAddress.setError("* Fill in the blank");
-        } else if (purpose.isEmpty()) {
+        } else if (purpose.isEmpty() || purpose.equals(getString(R.string.select_a_purpose))) {
             finishActionProgressBar();
             layoutRequestPurpose.setError("* Fill in the blank");
         }
         else {
 
+            int age;
+
+            try {
+                age = Integer.parseInt(ageText);
+                if (age < 10 || age > 100) {
+                    finishActionProgressBar();
+                    layoutRequestAge.setError("* Age must be between 10 and 100");
+                    return;
+                }
+            }catch (NumberFormatException e){
+                finishActionProgressBar();
+                layoutRequestAge.setError("* Invalid age format");
+                return;
+            }
+
             SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
             String userID = sharedPreferences.getString("userID", "");
 
-        }
+            String serviceId = getIntent().getStringExtra("SERVICE_ID");
 
+
+            boolean result = connect.addServicesRequest(userID, name, age, address, purpose, serviceId);
+
+            if(result){
+
+                finishActionProgressBar();
+
+                Toast.makeText(RequestServicesActivity.this, "Successfully request a service", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }else {
+                Toast.makeText(RequestServicesActivity.this, "Failed to request service", Toast.LENGTH_SHORT).show();
+            }
+
+        }
 
     }
 

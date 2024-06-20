@@ -36,6 +36,8 @@
     <string name="service_details">Service Details</string>
     <string name="select_a_purpose">Select a purpose</string>
     <string name="request">Request</string>
+    <string name="kagawad">Kagawad</string>
+    <string name="barangay_captain">Barangay Captain</string>
 
     <string-array name="purpose_list">
         <item>Medical Assistance</item>

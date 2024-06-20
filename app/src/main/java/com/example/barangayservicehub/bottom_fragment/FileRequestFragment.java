@@ -71,7 +71,11 @@ public class FileRequestFragment extends Fragment {
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()){
                     try{
 
-                        Get_RequestFile file = dataSnapshot.getValue(Get_RequestFile.class);
+                        String id = dataSnapshot.getKey();
+                        String availableStatus = dataSnapshot.child("availableStatus").getValue(String.class);
+                        String fileName = dataSnapshot.child("fileName").getValue(String.class);
+
+                        Get_RequestFile file = new Get_RequestFile(id, fileName, availableStatus);
                         listFile.add(file);
 
                     }

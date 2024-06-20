@@ -45,6 +45,7 @@ public class RequestFileAdapter extends RecyclerView.Adapter<RequestFileAdapter.
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), RequestServicesActivity.class);
                 intent.putExtra("SERVICES_TITLE", file.getFileName());
+                intent.putExtra("SERVICE_ID", file.getId());
                 v.getContext().startActivity(intent);
             }
         });
@@ -60,6 +61,7 @@ public class RequestFileAdapter extends RecyclerView.Adapter<RequestFileAdapter.
 
         TextView fileName;
         ImageButton btnFile;
+
         public RequestFileHolder(@NonNull View itemView) {
             super(itemView);
 
