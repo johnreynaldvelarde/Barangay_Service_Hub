@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.getter_class.Get_RequestFile;
 import com.example.barangayservicehub.module.ServicesViewActivity;
+import com.example.barangayservicehub.services_module.RequestServicesActivity;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,7 @@ public class RequestFileAdapter extends RecyclerView.Adapter<RequestFileAdapter.
         holder.btnFile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ServicesViewActivity.class);
+                Intent intent = new Intent(v.getContext(), RequestServicesActivity.class);
                 intent.putExtra("SERVICES_TITLE", file.getFileName());
                 v.getContext().startActivity(intent);
             }

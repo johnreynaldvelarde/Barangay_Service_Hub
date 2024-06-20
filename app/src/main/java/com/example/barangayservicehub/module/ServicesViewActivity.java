@@ -2,6 +2,8 @@ package com.example.barangayservicehub.module;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +15,7 @@ import com.example.barangayservicehub.R;
 public class ServicesViewActivity extends AppCompatActivity {
 
     TextView viewServicesTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public class ServicesViewActivity extends AppCompatActivity {
         viewServicesTitle.setText(serviceTitle);
 
         ImageView btnBack = findViewById(R.id.btnBackArrow);
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,5 +38,8 @@ public class ServicesViewActivity extends AppCompatActivity {
             }
         });
 
+
     }
+
+
 }

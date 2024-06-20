@@ -116,7 +116,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="20dp"
                         android:fontFamily="@font/raleway_bold"
-                        android:text="Barangay Bunsuran Information"
+                        android:text="Barangay Information"
                         android:textColor="@color/grey_brown"
                         android:textSize="18sp" />
 
@@ -171,7 +171,7 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/raleway_bold"
-                            android:text="Barangay Bunsuran News"
+                            android:text="Barangay News"
                             android:textColor="@color/grey_brown"
                             android:textSize="18sp" />
 

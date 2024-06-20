@@ -34,4 +34,23 @@
     <string name="barangay_e_connect">Barangay E-Connect</string>
     <string name="program_details">Program Details</string>
     <string name="service_details">Service Details</string>
+    <string name="select_a_purpose">Select a purpose</string>
+    <string name="request">Request</string>
+
+    <string-array name="purpose_list">
+        <item>Medical Assistance</item>
+        <item>Financial Assistance</item>
+        <item>Laboratory Assistance</item>
+        <item>Educational Assistance</item>
+
+        <item>Identification</item>
+        <item>Employment</item>
+        <item>Legal</item>
+        <item>Bank</item>
+        <item>OJT</item>
+        <item>Pag-Ibig</item>
+        <item>SSS</item>
+        <item>Philhealth</item>
+
+    </string-array>
 </resources>
