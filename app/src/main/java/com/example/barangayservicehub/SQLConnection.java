@@ -23,8 +23,18 @@ public class SQLConnection extends SQLiteOpenHelper {
     private static final String COLUMN_Password = "Password";
     private static final String COLUMN_AccountType = "Account_Type";
 
-    // remember account
 
+    // Creating barangay stats table
+    private static final String TABLE_NAME_BARANGAY_STATS = "Barangay_Stats";
+    private static final String COLUMN_Population = "Population";
+    private static final String COLUMN_Household = "Household";
+    private static final String COLUMN_Establishment = "Establishment";
+    private static final String COLUMN_Landmark = "Landmark";
+
+
+
+
+    // remember account
     private static final String Remember_NAME = "Remember_Account";
     private static final String Remember_ID = "Remember_ID";
     private static final String Remember_Username = "Remember_Username";
@@ -38,14 +48,25 @@ public class SQLConnection extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String query = "CREATE TABLE "+ TABLE_NAME +
+        // for create account
+        String createUserAccountTable = "CREATE TABLE "+ TABLE_NAME +
                 " ("+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_Username + " TEXT, "
                 + COLUMN_Email + " TEXT, "
                 + COLUMN_Password + " TEXT, "
                 + COLUMN_AccountType + " Boolean);";
 
-        db.execSQL(query);
+
+        // for barangay stats
+        String createBarangayStatsTable = "CREATE TABLE " + TABLE_NAME_BARANGAY_STATS +
+                " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_Population + " INTEGER, "
+                + COLUMN_Household + " INTEGER, "
+                + COLUMN_Establishment + " INTEGER, "
+                + COLUMN_Landmark + " TEXT);";
+
+        db.execSQL(createUserAccountTable);
+        db.execSQL(createBarangayStatsTable);
     }
 
 
@@ -53,6 +74,7 @@ public class SQLConnection extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_BARANGAY_STATS);
         onCreate(db);
     }
 
@@ -122,5 +144,34 @@ public class SQLConnection extends SQLiteOpenHelper {
         else{
             Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    // Add barangay stats in database
+    public void addBarangayStats(int population, int household, int establishment, String landmark) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_Population, population);
+        cv.put(COLUMN_Household, household);
+        cv.put(COLUMN_Establishment, establishment);
+        cv.put(COLUMN_Landmark, landmark);
+        long result = db.insert(TABLE_NAME_BARANGAY_STATS, null, cv);
+        if (result == -1) {
+            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Added Successfully", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+
+
+    // all read
+
+    // Read all barangay stats
+    Cursor readTableBarangayStats() {
+        String query = "SELECT * FROM " + TABLE_NAME_BARANGAY_STATS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db != null ? db.rawQuery(query, null) : null;
     }
 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -263,7 +266,14 @@ public class LoginActivity extends AppCompatActivity {
             loadTextBtn.setVisibility(View.VISIBLE);
         }
         else {
-            checkCredentials();
+            if (isInternetAvailable()) {
+                checkCredentials();
+
+            } else {
+                Toast.makeText(this, "No internet connection. Please try again later.", Toast.LENGTH_SHORT).show();
+                progressBar.setVisibility(View.INVISIBLE);
+                loadTextBtn.setVisibility(View.VISIBLE);
+            }
             /*
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -278,6 +288,17 @@ public class LoginActivity extends AppCompatActivity {
              */
         }
     }
+
+    // Method to check internet connection
+    public boolean isInternetAvailable() {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager != null) {
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+            return networkInfo != null && networkInfo.isConnected();
+        }
+        return false;
+    }
+
     public void nextLaunchRegister(){
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
