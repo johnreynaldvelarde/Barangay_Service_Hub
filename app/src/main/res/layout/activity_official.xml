@@ -10,7 +10,10 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -87,7 +90,6 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
 
-
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
                         <androidx.cardview.widget.CardView
@@ -142,8 +144,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
                             android:layout_marginTop="20dp"
+                            android:layout_marginEnd="20dp"
                             android:layout_marginBottom="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -217,8 +219,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
                             android:layout_marginTop="10dp"
+                            android:layout_marginEnd="20dp"
                             app:cardCornerRadius="20dp"
                             app:cardElevation="5dp">
 

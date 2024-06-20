@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
 
     private NavigationView navigationView;
 
-    TextView upper_name;
+    TextView upper_name, upper_email;
 
 
     public static final String EXTRA_MESSAGE = "com.example.registration.MESSAGE";
@@ -114,9 +114,6 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
         }
         else if(itemId == R.id.nav_official){
             startActivity(new Intent(MainActivity.this, OfficialActivity.class));
-        }
-        else if(itemId == R.id.nav_setting){
-            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
         }
         else{
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);

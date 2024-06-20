@@ -82,7 +82,7 @@
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/crime_report_title"
+                android:id="@+id/layout_feed_title"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="25dp"
@@ -102,7 +102,7 @@
                 app:startIconTint="@color/black_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/report_title"
+                    android:id="@+id/feed_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/title"
@@ -111,7 +111,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/crime_report_location"
+                android:id="@+id/layout_feed_rating"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="25dp"
@@ -131,16 +131,16 @@
                 app:startIconTint="@color/black_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/report_location"
+                    android:id="@+id/feed_rating"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Rating"
-                    android:inputType="textEmailAddress"
+                    android:inputType="number"
                     android:textColor="@color/black" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/crime_report_comment"
+                android:id="@+id/layout_feed_comment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="25dp"
@@ -160,7 +160,7 @@
                 app:startIconTint="@color/black_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/report_comment"
+                    android:id="@+id/feed_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="top"
@@ -199,7 +199,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textReportSubmitBtn"
+                android:id="@+id/textFeedSubmitBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_bold"

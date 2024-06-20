@@ -52,6 +52,7 @@ public class DashboardFragment extends Fragment {
 
     private static final String ARG_USERNAME = "username";
     private String username;
+    private String email;
 
     private ImageView drawerToggle;
     private DrawerLayout drawerLayout;
@@ -73,13 +74,14 @@ public class DashboardFragment extends Fragment {
 
     public class Constants {
         public static final String USERNAME_EXTRA = "USERNAME_EXTRA";
+        public static final String EMAIL_EXTRA = "EMAIL_EXTRA";
     }
-
 
     public static DashboardFragment newInstance(String username) {
         DashboardFragment fragment = new DashboardFragment();
         Bundle args = new Bundle();
         args.putString(ARG_USERNAME, username);
+        //args.putString(Constants.EMAIL_EXTRA, ;
         fragment.setArguments(args);
         return fragment;
     }
@@ -89,6 +91,7 @@ public class DashboardFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             username = getArguments().getString(ARG_USERNAME);
+            email = getArguments().getString(Constants.EMAIL_EXTRA);
         }
     }
 

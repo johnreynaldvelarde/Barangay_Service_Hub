@@ -2,6 +2,7 @@ package com.example.barangayservicehub.connector;
 
 import androidx.annotation.NonNull;
 
+import com.example.barangayservicehub.setter_class.Set_Feedback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -162,6 +163,30 @@ public class Firebase_Connect {
             Service_Request add_request = new Service_Request(userID, serviceID, name, address, formattedDate, purpose, age, 0, 0);
 
             mDatabase.child("Services_Request").child(requestID).setValue(add_request);
+
+            return true;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    // add Feeback and Review
+    public boolean addFeedbackReview(String userID, String title, String rating, String comment){
+
+        try {
+
+            Date dateNow = new Date();
+            // Format the date and time
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String formattedDate = dateFormat.format(dateNow);
+
+            String feedbackID  = mDatabase.child("Feedback_Review").push().getKey();
+
+            Set_Feedback add_request = new Set_Feedback(userID, title,rating, comment ,formattedDate, 0);
+
+            mDatabase.child("Feedback_Review").child(feedbackID).setValue(add_request);
 
             return true;
 
