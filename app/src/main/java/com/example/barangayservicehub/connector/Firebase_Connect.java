@@ -52,7 +52,7 @@ public class Firebase_Connect {
 
         try {
             String userId = mDatabase.child("User_Account").push().getKey();
-            User_Account adminUser = new User_Account(adminUsername, "", adminPassword, 1);
+            User_Account adminUser = new User_Account(adminUsername, "", adminPassword, 1, 1);
             mDatabase.child("User_Account").child(userId).setValue(adminUser);
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public class Firebase_Connect {
         try {
 
             String userId = mDatabase.child("User_Account").push().getKey();
-            User_Account register = new User_Account(name, email, password, account_type);
+            User_Account register = new User_Account(name, email, password, account_type, 1);
             mDatabase.child("User_Account").child(userId).setValue(register);
 
             return true;

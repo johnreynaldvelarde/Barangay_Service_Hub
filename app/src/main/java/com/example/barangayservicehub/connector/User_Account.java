@@ -2,16 +2,16 @@ package com.example.barangayservicehub.connector;
 
 public class User_Account {
     private String name, email, password;
-    private  int accountType;
+    private  int accountType, isOnline;
 
-    public User_Account(String name, String email, String password, int accountType) {
+    public User_Account(String name, String email, String password, int accountType, int isOnline) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.accountType = accountType;
+        this.isOnline = isOnline;
     }
 
-    // Getters and setters for each property
     public String getName() {
         return name;
     }
@@ -42,5 +42,13 @@ public class User_Account {
 
     public void setAccountType(int accountType) {
         this.accountType = accountType;
+    }
+
+    public int getIsOnline() {
+        return isOnline;
+    }
+
+    public void setIsOnline(int isOnline) {
+        this.isOnline = isOnline;
     }
 }

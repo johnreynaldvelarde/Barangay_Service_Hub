@@ -5,8 +5,8 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".admin_module.Admin_News">
+    android:background="#FFFFFF"
+    tools:context=".admin_module.Admin_Program">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout4"
@@ -83,12 +83,12 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:fontFamily="@font/raleway_bold"
-                            android:text="Add news"
+                            android:text="Add program"
                             android:textColor="@color/grey_brown"
                             android:textSize="20sp" />
 
                         <TextView
-                            android:id="@+id/crime_date_now"
+                            android:id="@+id/program_date_now"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
@@ -152,7 +152,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="top"
-                            android:hint="News About"
+                            android:hint="Descirption"
                             android:inputType="textMultiLine"
                             android:lines="6"
                             android:overScrollMode="always"
@@ -254,7 +254,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/btnNewsSubmit"
+                        android:id="@+id/btnProgramSubmit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
@@ -278,5 +278,4 @@
 
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
