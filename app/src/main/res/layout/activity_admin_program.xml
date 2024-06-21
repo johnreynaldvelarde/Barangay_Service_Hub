@@ -45,9 +45,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="-20dp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Add barangay news"
+                    android:text="Add barangay program"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btnBackArrow"
@@ -88,7 +88,7 @@
                             android:textSize="20sp" />
 
                         <TextView
-                            android:id="@+id/program_date_now"
+                            android:id="@+id/date_now"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
@@ -99,7 +99,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layout_news_title"
+                        android:id="@+id/layout_program_title"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="25dp"
@@ -119,7 +119,7 @@
                         app:startIconTint="@color/black_blue">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/news_title"
+                            android:id="@+id/program_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/title"
@@ -128,7 +128,7 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layout_news_article"
+                        android:id="@+id/layout_program_article"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="25dp"
@@ -148,7 +148,7 @@
                         app:startIconTint="@color/black_blue">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/news_article"
+                            android:id="@+id/program_article"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="top"
@@ -162,75 +162,6 @@
                             android:textColor="@color/black" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="25dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/raleway_bold"
-                            android:text="Additional Information"
-                            android:textColor="@color/grey_brown"
-                            android:textSize="20sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="25dp"
-                        android:orientation="horizontal">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="140dp">
-
-                            <ImageButton
-                                android:id="@+id/btnCamera_Gallery"
-                                android:layout_width="80dp"
-                                android:layout_height="80dp"
-                                android:layout_marginStart="25dp"
-                                android:layout_marginTop="16dp"
-                                android:background="@drawable/button_camera_round_background"
-                                android:elevation="2dp"
-                                android:padding="200dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:fontFamily="@font/raleway_semibold"
-                                android:text="@string/select_camera_n_or_select_gallery"
-                                android:textAlignment="center"
-                                android:textColor="@color/grey_brown"
-                                android:textSize="13sp"
-                                app:layout_constraintEnd_toEndOf="@+id/btnCamera_Gallery"
-                                app:layout_constraintStart_toStartOf="@+id/btnCamera_Gallery"
-                                app:layout_constraintTop_toBottomOf="@+id/btnCamera_Gallery" />
-
-                            <ImageView
-                                android:id="@+id/previewImage"
-                                android:layout_width="200dp"
-                                android:layout_height="125dp"
-                                android:layout_marginEnd="20dp"
-                                android:background="@drawable/image_not_available"
-                                android:scaleType="fitXY"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </LinearLayout>
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -242,7 +173,7 @@
 
 
                 <FrameLayout
-                    android:id="@+id/btnSubmit"
+                    android:id="@+id/btnFrameSubmit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -254,7 +185,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
-                        android:id="@+id/btnProgramSubmit"
+                        android:id="@+id/btnTextSubmit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"

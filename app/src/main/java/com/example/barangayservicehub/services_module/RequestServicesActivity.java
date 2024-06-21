@@ -28,6 +28,7 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class RequestServicesActivity extends AppCompatActivity {
@@ -62,6 +63,11 @@ public class RequestServicesActivity extends AppCompatActivity {
         btnServiceRequest = findViewById(R.id.textRequestBtn);
 
         String requestTitle = getIntent().getStringExtra("SERVICES_TITLE");
+        List<String> purposeList = getIntent().getStringArrayListExtra("PURPOSE_LIST");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, purposeList);
+        requestPurpose = findViewById(R.id.selectPurpose);
+        requestPurpose.setAdapter(adapter);
 
         viewRequestTitle.setText(requestTitle);
 
@@ -87,7 +93,7 @@ public class RequestServicesActivity extends AppCompatActivity {
             }
         });
 
-        listPurpose();
+        //listPurpose();
     }
 
     public void requestServices(){

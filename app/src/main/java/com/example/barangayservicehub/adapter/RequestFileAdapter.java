@@ -46,10 +46,10 @@ public class RequestFileAdapter extends RecyclerView.Adapter<RequestFileAdapter.
                 Intent intent = new Intent(v.getContext(), RequestServicesActivity.class);
                 intent.putExtra("SERVICES_TITLE", file.getFileName());
                 intent.putExtra("SERVICE_ID", file.getId());
+                intent.putStringArrayListExtra("PURPOSE_LIST", new ArrayList<>(file.getPurposeList()));
                 v.getContext().startActivity(intent);
             }
         });
-
     }
 
     @Override

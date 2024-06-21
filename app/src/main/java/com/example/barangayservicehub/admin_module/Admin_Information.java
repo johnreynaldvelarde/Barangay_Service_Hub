@@ -68,7 +68,14 @@ public class Admin_Information extends AppCompatActivity {
                 int establishment = getInputOrZero(t_establishment);
                 int landmark = getInputOrZero(t_landmark);
 
-                connect.updateBarangayStats(population, household, establishment, landmark);
+                boolean result = connect.updateBarangayStats(population, household, establishment, landmark);
+
+                if(result){
+                    Toast.makeText(Admin_Information.this, "Barangay Information update successfully", Toast.LENGTH_SHORT).show();
+                    finish();
+                }else {
+                    Toast.makeText(Admin_Information.this, "Barangay Information update error", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

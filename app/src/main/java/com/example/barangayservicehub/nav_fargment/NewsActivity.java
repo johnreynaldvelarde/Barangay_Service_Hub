@@ -71,7 +71,7 @@ public class NewsActivity extends AppCompatActivity {
 
         progressBarNews.setVisibility(View.VISIBLE);
 
-        Query query = databaseReference.orderByChild("newsStatus").equalTo("0");
+        Query query = databaseReference.orderByChild("newsStatus").equalTo(0);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

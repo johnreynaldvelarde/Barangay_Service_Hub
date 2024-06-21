@@ -33,6 +33,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.barangayservicehub.R;
 import com.example.barangayservicehub.connector.Firebase_Connect;
+import com.example.barangayservicehub.core.function;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -56,6 +57,7 @@ public class ReportAddActivity extends AppCompatActivity {
     private static final int GALLERY_REQUEST_CODE = 1002;
 
     final Firebase_Connect connect;
+    final function function;
 
     FrameLayout btnCrimeReport;
     ImageButton btnCameraGallery;
@@ -67,6 +69,7 @@ public class ReportAddActivity extends AppCompatActivity {
 
     public ReportAddActivity(){
         connect = new Firebase_Connect();
+        function = new function();
     }
 
     @Override
@@ -77,7 +80,7 @@ public class ReportAddActivity extends AppCompatActivity {
 
         preview_Image = findViewById(R.id.previewImage);
         viewDate = findViewById(R.id.crime_date_now);
-        String currentDate = getCurrentDate();
+        String currentDate = function.getCurrentDate();
         viewDate.setText(currentDate);
 
         progressBar = findViewById(R.id.progressBar);
@@ -110,16 +113,6 @@ public class ReportAddActivity extends AppCompatActivity {
                 submitCrimeReport();
             }
         });
-    }
-
-    private String getCurrentDate() {
-        // Create a SimpleDateFormat object with desired date format
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
-
-        // Get current date
-        String currentDate = sdf.format(new Date());
-
-        return currentDate;
     }
 
     private void showOptionsDialog() {

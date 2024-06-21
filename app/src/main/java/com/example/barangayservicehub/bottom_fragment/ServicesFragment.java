@@ -50,7 +50,7 @@ public class ServicesFragment extends Fragment {
 
         // for services
         recyclerService = view.findViewById(R.id.recycleViewServices);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Barangay_Service");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Barangay_Program");
         listService = new ArrayList<>();
         recyclerService.setLayoutManager(new LinearLayoutManager(getContext()));
         serviceAdapter =  new ProgramsAdapter(getContext() , listService);

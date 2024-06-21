@@ -52,7 +52,7 @@ public class FileRequestFragment extends Fragment {
 
         // for request file view
         recyclerFile = view.findViewById(R.id.recycleViewFile);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Barangay_File");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Barangay_Services");
         listFile = new ArrayList<>();
         recyclerFile.setLayoutManager(new LinearLayoutManager(getContext()));
         fileAdapter =  new RequestFileAdapter(getContext() , listFile);
@@ -72,10 +72,10 @@ public class FileRequestFragment extends Fragment {
                     try{
 
                         String id = dataSnapshot.getKey();
-                        String availableStatus = dataSnapshot.child("availableStatus").getValue(String.class);
-                        String fileName = dataSnapshot.child("fileName").getValue(String.class);
+                        //String availableStatus = dataSnapshot.child("availableStatus").getValue(String.class);
+                        //String fileName = dataSnapshot.child("fileName").getValue(String.class);
 
-                        Get_RequestFile file = new Get_RequestFile(id, fileName, availableStatus);
+                        Get_RequestFile file = dataSnapshot.getValue(Get_RequestFile.class);
                         listFile.add(file);
 
                     }

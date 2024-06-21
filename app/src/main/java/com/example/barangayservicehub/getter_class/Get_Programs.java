@@ -2,23 +2,22 @@ package com.example.barangayservicehub.getter_class;
 
 public class Get_Programs {
 
-    private String serviceName, serviceDescription;
+    private String programName, programDescription;
 
     public Get_Programs(){
 
     }
 
-    public Get_Programs(String serviceName, String serviceDescription) {
-        this.serviceName = serviceName;
-        this.serviceDescription = serviceDescription;
+    public Get_Programs(String programName, String programDescription) {
+        this.programName = programName;
+        this.programDescription = programDescription;
     }
 
-    public String getServiceName() {
-        return serviceName;
+    public String getProgramName() {
+        return programName;
     }
 
-    public String getServiceDescription() {
-        return serviceDescription;
+    public String getProgramDescription() {
+        return programDescription;
     }
-
 }

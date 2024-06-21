@@ -38,16 +38,16 @@ public class ProgramsAdapter extends RecyclerView.Adapter<ProgramsAdapter.Servic
     public void onBindViewHolder(@NonNull ServicesHolder holder, int position) {
 
         Get_Programs programs = list.get(position);
-        holder.programName.setText(programs.getServiceName());
-        holder.programDescription.setText(programs.getServiceDescription());
+        holder.programName.setText(programs.getProgramName());
+        holder.programDescription.setText(programs.getProgramDescription());
 
 
         holder.btnServiceView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), ProgramsViewActivity.class);
-                intent.putExtra("PROGRAMS_TITLE", programs.getServiceName());
-                intent.putExtra("PROGRAMS_DESCRIPTION", programs.getServiceDescription());
+                intent.putExtra("PROGRAMS_TITLE", programs.getProgramName());
+                intent.putExtra("PROGRAMS_DESCRIPTION", programs.getProgramDescription());
                 v.getContext().startActivity(intent);
             }
         });

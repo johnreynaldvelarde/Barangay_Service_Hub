@@ -22,7 +22,7 @@ import com.example.barangayservicehub.RegisterActivity;
 public class MainActivityAdmin extends AppCompatActivity {
 
 
-    CardView btnInfo, btnNews, btnProgram, btnNumber, btnViewRequest, btnViewIncident, btnViewFeedBack, btnLogout;
+    CardView btnInfo, btnNews, btnSevices, btnProgram, btnNumber, btnViewRequest, btnViewIncident, btnViewFeedBack, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,7 @@ public class MainActivityAdmin extends AppCompatActivity {
 
         btnInfo = findViewById(R.id.btnUpdateBarangayStats);
         btnNews = findViewById(R.id.btnAddBarangayNews);
+        btnSevices = findViewById(R.id.btnAddBarangayService);
         btnProgram = findViewById(R.id.btnAddBarangayProgram);
         btnNumber = findViewById(R.id.btnAddBarangayNumber);
         btnViewRequest = findViewById(R.id.btnViewBarangayRequest);
@@ -51,6 +52,13 @@ public class MainActivityAdmin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 nextLaunchAddNews();
+            }
+        });
+
+        btnSevices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextLaunchAddServices();
             }
         });
 
@@ -77,6 +85,11 @@ public class MainActivityAdmin extends AppCompatActivity {
 
     public void nextLaunchAddNews(){
         Intent intent = new Intent(this, Admin_News.class);
+        startActivity(intent);
+    }
+
+    public void nextLaunchAddServices(){
+        Intent intent = new Intent(this, Admin_Services.class);
         startActivity(intent);
     }
 

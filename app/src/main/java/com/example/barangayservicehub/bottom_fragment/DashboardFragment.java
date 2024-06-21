@@ -242,7 +242,7 @@ public class DashboardFragment extends Fragment {
 
         progressBarNews.setVisibility(View.VISIBLE);
 
-        Query query = databaseReference.orderByChild("newsStatus").equalTo("0");
+        Query query = databaseReference.orderByChild("newsStatus").equalTo(0).limitToLast(100);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -274,6 +274,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
+                Log.e("Barangay News", "Error fetching data: " + error.getMessage());
                 String errorMessage = "Database error: " + error.getMessage();
                 Log.e("DashboardFragment", errorMessage);
                 Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show();
