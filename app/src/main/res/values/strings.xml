@@ -42,6 +42,7 @@
     <string name="off">Off</string>
     <string name="important_news">!Important News</string>
     <string name="important_barangay_news">Important Barangay News</string>
+    <string name="call_number">Call Number</string>
 
     <string-array name="purpose_list">
         <item>Medical Assistance</item>

@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- Add the permission here -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +16,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarangayServiceHub"
         tools:targetApi="31">
+        <activity
+            android:name=".module.Notification_View_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".admin_module.Admin_View_Services_Request"
+            android:exported="false" />
+        <activity
+            android:name=".admin_view.Request_View_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".admin_module.Admin_View_Incident_Report"
+            android:exported="false" />
+        <activity
+            android:name=".admin_module.Admin_Call"
+            android:exported="false" />
         <activity
             android:name=".admin_module.Admin_Purpose"
             android:exported="false" />

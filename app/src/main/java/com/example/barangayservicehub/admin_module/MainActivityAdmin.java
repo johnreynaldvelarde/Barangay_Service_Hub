@@ -33,7 +33,6 @@ public class MainActivityAdmin extends AppCompatActivity {
 
         btnInfo = findViewById(R.id.btnUpdateBarangayStats);
         btnNews = findViewById(R.id.btnAddBarangayNews);
-        btnSevices = findViewById(R.id.btnAddBarangayService);
         btnProgram = findViewById(R.id.btnAddBarangayProgram);
         btnNumber = findViewById(R.id.btnAddBarangayNumber);
         btnViewRequest = findViewById(R.id.btnViewBarangayRequest);
@@ -55,17 +54,24 @@ public class MainActivityAdmin extends AppCompatActivity {
             }
         });
 
-        btnSevices.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                nextLaunchAddServices();
-            }
-        });
-
         btnProgram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 nextLaunchAddProgram();
+            }
+        });
+
+        btnNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextLunchAddNumber();
+            }
+        });
+
+        btnViewRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nextLaunchViewIncidentReport();
             }
         });
 
@@ -93,8 +99,18 @@ public class MainActivityAdmin extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void nextLunchAddNumber(){
+        Intent intent = new Intent(this, Admin_Call.class );
+        startActivity(intent);
+    }
+
     public void nextLaunchAddProgram(){
         Intent intent = new Intent(this, Admin_Program.class);
+        startActivity(intent);
+    }
+
+    public void nextLaunchViewIncidentReport(){
+        Intent intent = new Intent(this, Admin_View_Services_Request.class);
         startActivity(intent);
     }
 

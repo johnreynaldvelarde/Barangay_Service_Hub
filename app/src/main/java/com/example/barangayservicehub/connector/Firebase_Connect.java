@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.example.barangayservicehub.core.function;
 import com.example.barangayservicehub.setter_class.Set_Feedback;
 import com.example.barangayservicehub.setter_class.Set_News;
+import com.example.barangayservicehub.setter_class.Set_Number;
 import com.example.barangayservicehub.setter_class.Set_Program;
 import com.example.barangayservicehub.setter_class.Set_Purpose;
 import com.example.barangayservicehub.setter_class.Set_Services;
@@ -228,6 +229,24 @@ public class Firebase_Connect {
             Set_Services add_services = new Set_Services(servicesName, formattedDate, purposeID, 0);
 
             mDatabase.child("Barangay_Services").child(servicesID).setValue(add_services);
+
+            return true;
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            return  false;
+        }
+    }
+
+    // add emergency number
+    public boolean addCallNumber(String name, String number){
+        try{
+
+            String numberID = mDatabase.child("Barangay_Call_Number").push().getKey();
+
+            Set_Number add_number = new Set_Number(name, number, 0);
+
+            mDatabase.child("Barangay_Call_Number").child(numberID).setValue(add_number);
 
             return true;
 

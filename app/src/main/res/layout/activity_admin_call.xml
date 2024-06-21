@@ -6,14 +6,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".admin_module.Admin_News">
+    tools:context=".admin_module.Admin_Call">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,9 +45,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="-20dp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Add barangay news"
+                    android:text="Add emergency number"
                     android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btnBackArrow"
@@ -75,7 +72,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:layout_marginEnd="25dp"
                         android:orientation="horizontal">
@@ -85,47 +82,24 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:text="Add news"
+                            android:fontFamily="@font/raleway_bold"
+                            android:text="Add number"
                             android:textColor="@color/grey_brown"
                             android:textSize="20sp" />
 
-
-
                         <TextView
-                            android:id="@+id/add_news_date_now"
+                            android:id="@+id/date_now"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="5dp"
-                            android:fontFamily="@font/poppins_medium"
+                            android:fontFamily="@font/raleway_semibold"
                             android:text="@string/_00_00_0000"
                             android:textColor="@color/red"
                             android:textSize="15sp" />
                     </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginEnd="25dp"
-                        android:orientation="horizontal">
-
-
-                        <com.google.android.material.materialswitch.MaterialSwitch
-                            android:id="@+id/toogleImportant"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:checked="false"
-                            android:text="@string/important_barangay_news"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:textColor="@color/grey_brown"
-                            app:thumbIcon="@drawable/ic_check"/>
-
-                    </LinearLayout>
-
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layout_news_title"
+                        android:id="@+id/layoutCallName"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="25dp"
@@ -137,7 +111,7 @@
                         app:boxStrokeColor="@color/black_blue"
                         app:boxStrokeWidth="1dp"
                         app:counterEnabled="true"
-                        app:counterMaxLength="100"
+                        app:counterMaxLength="50"
                         app:endIconMode="clear_text"
                         app:endIconTint="@color/grey"
                         app:hintTextAppearance="@style/HintTextAppearance"
@@ -145,20 +119,20 @@
                         app:startIconTint="@color/black_blue">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/news_title"
+                            android:id="@+id/callInputName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="@string/title"
+                            android:hint="Number Name"
                             android:inputType="textEmailAddress"
                             android:textColor="@color/black" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/layout_news_article"
+                        android:id="@+id/layoutCallNumber"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="25dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginEnd="25dp"
                         android:background="@color/white"
                         android:fontFamily="@font/poppins_regular"
@@ -166,7 +140,7 @@
                         app:boxStrokeColor="@color/black_blue"
                         app:boxStrokeWidth="1dp"
                         app:counterEnabled="true"
-                        app:counterMaxLength="1000"
+                        app:counterMaxLength="50"
                         app:endIconMode="clear_text"
                         app:endIconTint="@color/grey"
                         app:hintTextAppearance="@style/HintTextAppearance"
@@ -174,89 +148,14 @@
                         app:startIconTint="@color/black_blue">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/news_article"
+                            android:id="@+id/callInputNumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="top"
-                            android:hint="News About"
-                            android:inputType="textMultiLine"
-                            android:lines="6"
-                            android:overScrollMode="always"
-                            android:scrollbarStyle="insideInset"
-                            android:scrollbars="vertical"
-                            android:scrollHorizontally="false"
+                            android:hint="@string/call_number"
+                            android:inputType="phone"
                             android:textColor="@color/black" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginEnd="25dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_semibold"
-                            android:text="Additional Information"
-                            android:textColor="@color/grey_brown"
-                            android:textSize="20sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="25dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="25dp"
-                        android:orientation="horizontal">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="140dp">
-
-                            <ImageButton
-                                android:id="@+id/btnCamera_Gallery"
-                                android:layout_width="65dp"
-                                android:layout_height="65dp"
-                                android:layout_marginStart="40dp"
-                                android:layout_marginTop="16dp"
-                                android:background="@drawable/button_camera_round_background"
-                                android:elevation="2dp"
-                                android:padding="200dp"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:fontFamily="@font/poppins_medium"
-                                android:text="@string/select_camera_n_or_select_gallery"
-                                android:textAlignment="center"
-                                android:textColor="@color/grey_brown"
-                                android:textSize="10sp"
-                                app:layout_constraintEnd_toEndOf="@+id/btnCamera_Gallery"
-                                app:layout_constraintStart_toStartOf="@+id/btnCamera_Gallery"
-                                app:layout_constraintTop_toBottomOf="@+id/btnCamera_Gallery" />
-
-                            <ImageView
-                                android:id="@+id/preview_news"
-                                android:layout_width="200dp"
-                                android:layout_height="125dp"
-                                android:layout_marginEnd="20dp"
-                                android:background="@drawable/image_not_available"
-                                android:scaleType="fitXY"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </LinearLayout>
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -264,12 +163,11 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp">
+                android:layout_marginTop="50dp">
 
 
                 <FrameLayout
-                    android:id="@+id/btnFrameNewsSubmit"
+                    android:id="@+id/btnFrameSubmit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
@@ -280,9 +178,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <!-- Progress Bar -->
                     <TextView
-                        android:id="@+id/btnTextNewsSubmit"
+                        android:id="@+id/btnTextSubmit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
@@ -290,8 +187,9 @@
                         android:text="@string/submit"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        android:textSize="20sp"/>
+                        android:textSize="20sp" />
 
+                    <!-- Progress Bar -->
                     <ProgressBar
                         android:id="@+id/progressBar"
                         android:layout_width="40dp"
@@ -305,5 +203,4 @@
 
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

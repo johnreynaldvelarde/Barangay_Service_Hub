@@ -1,7 +1,13 @@
 package com.example.barangayservicehub;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -10,6 +16,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -27,6 +34,11 @@ import com.example.barangayservicehub.nav_fargment.OfficialActivity;
 import com.example.barangayservicehub.nav_fargment.SettingsActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements DashboardFragment.DrawerToggleListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -42,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
 
 
     public static final String EXTRA_MESSAGE = "com.example.registration.MESSAGE";
+    private static final String CHANNEL_ID = "emergency_channel";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +62,26 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
+        DatabaseReference newsRef = FirebaseDatabase.getInstance().getReference("Barangay_News");
+        newsRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot newsSnapshot : dataSnapshot.getChildren()) {
+                    int isImportant = newsSnapshot.child("isImportant").getValue(Integer.class);
+                    if (isImportant == 1) {
+                        String newsTitle = newsSnapshot.child("newsTitle").getValue(String.class);
+                        String newsArticle = newsSnapshot.child("newsArticle").getValue(String.class);
+                        showNotification(newsTitle, newsArticle);
+                        triggerEmergencyAlert();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
         frameLayout = findViewById(R.id.frame_layout);
@@ -156,5 +189,44 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
         String username = getIntent().getStringExtra(LoginActivity.EXTRA_MESSAGE);
         DashboardFragment dashboardFragment = DashboardFragment.newInstance(username);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, dashboardFragment).commit();
+    }
+
+    private void showNotification(String title, String content) {
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+        //Toast.makeText(this, "Notification Alert Triggered!", Toast.LENGTH_SHORT).show();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "Emergency Alerts", NotificationManager.IMPORTANCE_HIGH);
+            channel.setDescription("Channel for emergency alerts");
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("NEWS_TITLE", title);
+        intent.putExtra("NEWS_CONTENT", content);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setSmallIcon(R.drawable.ic_warning)
+                .setContentTitle(title)
+                .setContentText(content)
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(content))
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true);
+
+        notificationManager.notify(1, builder.build());
+    }
+
+    private void triggerEmergencyAlert() {
+        // Display a toast message
+        //Toast.makeText(this, "Emergency Alert Triggered!", Toast.LENGTH_SHORT).show();
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        if (vibrator != null && vibrator.hasVibrator()) {
+            long[] vibrationPattern = {0, 500, 1000};
+            vibrator.vibrate(vibrationPattern, -1);
+        }
     }
 }
