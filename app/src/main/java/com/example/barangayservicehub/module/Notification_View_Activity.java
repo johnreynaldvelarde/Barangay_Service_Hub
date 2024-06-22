@@ -24,6 +24,10 @@ public class Notification_View_Activity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_notification_view);
 
+        String newsTitle = getIntent().getStringExtra("NEWS_TITLE_EXTRA");
+        String newsDate = getIntent().getStringExtra("NEWS_DATE_EXTRA");
+        String newsArticle = getIntent().getStringExtra("NEWS_ARTICLE_EXTRA");
+
 
 
 

@@ -59,7 +59,7 @@ public class ServicesFragment extends Fragment {
 
         progressBarServices.setVisibility(View.VISIBLE);
 
-        Query query = databaseReference.orderByChild("availableStatus").equalTo("0");
+        Query query = databaseReference.orderByChild("availableStatus").equalTo(0);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

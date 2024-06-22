@@ -28,6 +28,8 @@ import com.example.barangayservicehub.bottom_fragment.DashboardFragment;
 import com.example.barangayservicehub.bottom_fragment.EmergencyFragment;
 import com.example.barangayservicehub.bottom_fragment.FileRequestFragment;
 import com.example.barangayservicehub.bottom_fragment.ServicesFragment;
+import com.example.barangayservicehub.module.Alert_View_Activity;
+import com.example.barangayservicehub.module.Notification_View_Activity;
 import com.example.barangayservicehub.nav_fargment.FeedbackActivity;
 import com.example.barangayservicehub.nav_fargment.NewsActivity;
 import com.example.barangayservicehub.nav_fargment.OfficialActivity;
@@ -71,7 +73,8 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
                     if (isImportant == 1) {
                         String newsTitle = newsSnapshot.child("newsTitle").getValue(String.class);
                         String newsArticle = newsSnapshot.child("newsArticle").getValue(String.class);
-                        showNotification(newsTitle, newsArticle);
+                        String newsDateAdded = newsSnapshot.child("newsDateAdded").getValue(String.class);
+                        showNotification(newsTitle, newsArticle, newsDateAdded);
                         triggerEmergencyAlert();
                     }
                 }
@@ -191,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, dashboardFragment).commit();
     }
 
-    private void showNotification(String title, String content) {
+    private void showNotification(String title, String content, String date) {
         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
 
@@ -203,9 +206,10 @@ public class MainActivity extends AppCompatActivity implements DashboardFragment
             notificationManager.createNotificationChannel(channel);
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, Alert_View_Activity.class);
         intent.putExtra("NEWS_TITLE", title);
         intent.putExtra("NEWS_CONTENT", content);
+        intent.putExtra("NEWS_DATE", date);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
