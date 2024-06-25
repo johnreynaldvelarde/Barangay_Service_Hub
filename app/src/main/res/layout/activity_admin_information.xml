@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="-20dp"
                     android:fontFamily="@font/poppins_bold"
-                    android:text="Add barangay news"
+                    android:text="Update information"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
